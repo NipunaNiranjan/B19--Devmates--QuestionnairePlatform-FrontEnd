@@ -5,7 +5,13 @@ import "./NavbarComponent.css";
 
 function NavbarComponent() {
   return (
-    <Navbar bg="dark" variant="dark" sticky="top" expand="lg" collapseOnSelect>
+    <Navbar
+      bg="myNavbarColor"
+      variant="dark"
+      sticky="top"
+      expand="lg"
+      collapseOnSelect
+    >
       <Navbar.Brand>Home</Navbar.Brand>
 
       <NavbarToggle />
