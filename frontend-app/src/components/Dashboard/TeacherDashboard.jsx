@@ -7,15 +7,17 @@ function TeacherDashboard() {
   const [createClassButton, setCreateclassButton] = useState(false);
 
   return (
-    <div>
+    <div className="m-lg-5 ">
       <Button
+        className="mw-sm-100"
         variant="primary"
-        size="lg"
+        size="lg "
         onClick={() => setCreateclassButton(true)}
       >
         Craete class
       </Button>{" "}
       <Button
+        className="mw-sm-100"
         variant="secondary"
         size="lg"
         onClick={() => setCreateclassButton(false)}
