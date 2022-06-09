@@ -6,14 +6,6 @@ import CreateOrganization from "./createClassOrganization/CreateOrganization";
 function TeacherDashboard() {
   const [createClassButton, setCreateclassButton] = useState(false);
 
-  // const handleButton1 = () => {
-  //   setCreateclassButton = true;
-  // };
-
-  // const handleButton2 = () => {
-  //   setCreateclassButton = false;
-  // };
-
   return (
     <div>
       <Button
