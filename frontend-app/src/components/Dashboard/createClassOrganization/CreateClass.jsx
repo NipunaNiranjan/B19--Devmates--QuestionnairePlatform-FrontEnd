@@ -3,7 +3,6 @@ import React from "react";
 function CreateClass() {
   return (
     <form>
-      <h3>Sign Up</h3>
       <div className="mb-3">
         <label>First name</label>
         <input type="text" className="form-control" placeholder="First name" />
@@ -13,24 +12,24 @@ function CreateClass() {
         <input type="text" className="form-control" placeholder="Last name" />
       </div>
       <div className="mb-3">
-        <label>Email address</label>
+        <label>Name of the class</label>
         <input
-          type="email"
+          type="text"
           className="form-control"
-          placeholder="Enter email"
+          placeholder="Enter class name"
         />
       </div>
       <div className="mb-3">
-        <label>Password</label>
+        <label>No of Students</label>
         <input
-          type="password"
+          type="number"
           className="form-control"
-          placeholder="Enter password"
+          placeholder="Enter no. of students"
         />
       </div>
       <div className="d-grid">
         <button type="submit" className="btn btn-primary">
-          Sign Up
+          create class
         </button>
       </div>
       <p className="forgot-password text-right">
