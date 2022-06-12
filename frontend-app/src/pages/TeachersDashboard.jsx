@@ -16,7 +16,7 @@ function TeachersDashboard() {
       >
         <Sidebar />
         {/* forms */}
-        <div className="m-lg-5 ">
+        <div className="m-lg-5 container-fluid">
           <Button
             className="mw-sm-100"
             variant="primary"
@@ -36,6 +36,7 @@ function TeachersDashboard() {
           <div>
             {createClassButton ? <CreateClass /> : <CreateOrganization />}
           </div>
+          <hr />
         </div>
       </div>
     </>
