@@ -1,35 +1,46 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { Table } from "react-bootstrap";
 
 function UserTables() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    refreshUsers();
+  }, []);
+
+  function refreshUsers() {
+    const ProjectAPI = axios
+      .get("http://localhost:8080/admin/view_users")
+      .then((res) => {
+        setUsers(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <>
       <Table striped bordered hover responsive>
         <thead>
           <tr>
             <th>#</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Username</th>
+            <th>Username </th>
+            <th>Role</th>
+            <th>Status</th>
+            <th>action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td colSpan={2}>Larry the Bird</td>
-            <td>@twitter</td>
-          </tr>
+          {users.map((user) => (
+            <tr key={user.id}>
+              <td>{user.id}</td>
+              <td>{user.username}</td>
+              <td>{user.role}</td>
+              <td>{user.status}</td>
+              <td>hello</td>
+            </tr>
+          ))}
         </tbody>
       </Table>
     </>
