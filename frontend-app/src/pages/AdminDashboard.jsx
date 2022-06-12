@@ -1,7 +1,16 @@
 import React from "react";
 
 function AdminDashboard() {
-  return <div>AdminDashboard</div>;
+  return (
+    <>
+      <NavbarComponent />
+      <div
+        style={{ display: "flex", height: "100vh", overflow: "scroll initial" }}
+      >
+        <Sidebar />
+      </div>
+    </>
+  );
 }
 
 export default AdminDashboard;

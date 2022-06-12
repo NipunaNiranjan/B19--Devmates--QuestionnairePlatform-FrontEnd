@@ -3,7 +3,7 @@ import React from "react";
 function UserTables() {
   return (
     <>
-      <Table striped bordered hover>
+      <Table striped bordered hover responsive>
         <thead>
           <tr>
             <th>#</th>
