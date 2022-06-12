@@ -1,9 +1,10 @@
 import "./App.css";
+import TeachersDashboard from "./pages/TeachersDashboard";
 
 function App() {
   return (
     <div className="App">
-      <h1>App component</h1>
+      <TeachersDashboard />
     </div>
   );
 }
