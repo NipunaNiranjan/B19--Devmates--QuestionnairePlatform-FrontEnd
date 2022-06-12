@@ -23,9 +23,9 @@ function CreateClass() {
       <div class="row">
         <div class="col">
           <div className="mb-3">
-            <label>No of Students</label>
+            <label>From</label>
             <input
-              type="number"
+              type="date"
               className="form-control"
               placeholder="Enter no. of students"
             />
@@ -33,9 +33,9 @@ function CreateClass() {
         </div>
         <div class="col">
           <div className="mb-3">
-            <label>No of Students</label>
+            <label>To</label>
             <input
-              type="number"
+              type="date"
               className="form-control"
               placeholder="Enter no. of students"
             />
