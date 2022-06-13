@@ -26,6 +26,9 @@ function UserTables() {
         console.log(res);
       })
       .catch((err) => console.log(err));
+
+    //refresh page
+    window.location.reload(false);
   }
 
   function handeleActivateUser(data) {
@@ -35,6 +38,9 @@ function UserTables() {
         console.log(res);
       })
       .catch((err) => console.log(err));
+
+    //refresh page
+    window.location.reload(false);
   }
 
   return (
