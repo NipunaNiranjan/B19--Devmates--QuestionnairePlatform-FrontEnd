@@ -52,14 +52,14 @@ function UserTables() {
               <td>
                 {user.status ? (
                   <Button
-                    variant="light"
+                    variant="warning"
                     key={user.id}
                     onClick={() => handeleDeactivateUser(user.id)}
                   >
                     deactivate
                   </Button>
                 ) : (
-                  <Button variant="light">yellow</Button>
+                  <Button variant="primary">activate</Button>
                 )}
               </td>
             </tr>
