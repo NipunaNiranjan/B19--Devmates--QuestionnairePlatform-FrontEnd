@@ -3,7 +3,7 @@ import NavbarComponent from "../components/navbar/NavbarComponent";
 import Sidebar from "../components/sidebar/Sidebar";
 import UserTables from "../components/UserTables";
 
-function AdminDashboard() {
+function AdminDashboardViewUsers() {
   return (
     <>
       <NavbarComponent />
@@ -17,4 +17,4 @@ function AdminDashboard() {
   );
 }
 
-export default AdminDashboard;
+export default AdminDashboardViewUsers;

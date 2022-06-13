@@ -1,9 +1,25 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
-import AdminDashboard from "./pages/AdminDashboard";
+import AdminDashboardViewUsers from "./pages/AdminDashboardViewUsers";
 import TeachersDashboard from "./pages/TeachersDashboard";
 
 function App() {
-  return <div className="App"></div>;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route
+          exact
+          path="/dashboard/admin/viewusers"
+          element={<AdminDashboardViewUsers />}
+        />
+        <Route
+          exact
+          path="/dashboard/teacher"
+          element={<TeachersDashboard />}
+        />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
