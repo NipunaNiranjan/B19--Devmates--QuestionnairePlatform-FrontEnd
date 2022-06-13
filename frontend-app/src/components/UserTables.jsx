@@ -19,11 +19,11 @@ function UserTables() {
       .catch((err) => console.log(err));
   }
 
-  function deactivateUser(id) {
-    console.log(id);
+  function handeleDeactivateUser(data) {
+    console.log("http://localhost:8080/admin/deactivate/" + data);
 
     axios
-      .put()
+      .put("http://localhost:8080/admin/deactivate/" + data)
       .then((res) => {
         console.log(res);
       })
@@ -53,7 +53,8 @@ function UserTables() {
                 {user.status ? (
                   <Button
                     variant="light"
-                    onClick={() => deactivateUser(user.id)}
+                    key={user.id}
+                    onClick={() => handeleDeactivateUser(user.id)}
                   >
                     deactivate
                   </Button>
