@@ -20,10 +20,17 @@ function UserTables() {
   }
 
   function handeleDeactivateUser(data) {
-    console.log("http://localhost:8080/admin/deactivate/" + data);
-
     axios
       .put("http://localhost:8080/admin/deactivate/" + data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function handeleActivateUser(data) {
+    axios
+      .put("http://localhost:8080/admin/activate_user/" + data)
       .then((res) => {
         console.log(res);
       })
@@ -59,7 +66,12 @@ function UserTables() {
                     deactivate
                   </Button>
                 ) : (
-                  <Button variant="primary">activate</Button>
+                  <Button
+                    variant="primary"
+                    onClick={() => handeleActivateUser(user.id)}
+                  >
+                    activate
+                  </Button>
                 )}
               </td>
             </tr>
