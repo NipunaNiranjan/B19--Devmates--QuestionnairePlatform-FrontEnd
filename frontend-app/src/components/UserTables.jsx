@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 
 function UserTables() {
   const [users, setUsers] = useState([]);
@@ -15,6 +15,17 @@ function UserTables() {
       .then((res) => {
         setUsers(res.data);
         console.log(res.data);
+      })
+      .catch((err) => console.log(err));
+  }
+
+  function deactivateUser(id) {
+    console.log(id);
+
+    axios
+      .put()
+      .then((res) => {
+        console.log(res);
       })
       .catch((err) => console.log(err));
   }
@@ -37,8 +48,19 @@ function UserTables() {
               <td>{user.id}</td>
               <td>{user.username}</td>
               <td>{user.role}</td>
-              <td>{user.status}</td>
-              <td>hello</td>
+              <td>{user.status ? "true" : "false"}</td>
+              <td>
+                {user.status ? (
+                  <Button
+                    variant="light"
+                    onClick={() => deactivateUser(user.id)}
+                  >
+                    deactivate
+                  </Button>
+                ) : (
+                  <Button variant="light">yellow</Button>
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
