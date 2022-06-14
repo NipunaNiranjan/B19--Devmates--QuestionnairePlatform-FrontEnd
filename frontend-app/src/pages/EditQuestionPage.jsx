@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Container, Button } from "react-bootstrap";
 import {useParams, useNavigate} from 'react-router-dom'
 import Form from 'react-bootstrap/Form'
@@ -6,14 +6,31 @@ import NavbarComponent from "../components/navbar/NavbarComponent";
 import Sidebar from '../components/sidebar/Sidebar'
 import api from '../axiosContact'
 
-export default function CreateQuestionPage() {
+export default function EditQuestionPage() {
 
     const {id} = useParams();
     const navigate = useNavigate();
 
     const [name, setName] = useState()
     const [question, setQuestion] = useState()
+    const [questionnaireID, setQuestionnaireID] = useState()
     const [errors, setErrors] = useState([])
+
+    useEffect(() => {
+        api.get(`/questions/getQuestionById/${id}`)
+        .then((result) => {
+            if (result.data) {
+                setName(result.data.name);
+                setQuestion(result.data.question);
+                setQuestionnaireID(result.data.questionnaireId);
+            } else {
+               console.log(result); 
+            }
+        }).catch((error) => {
+            console.error("Error:", error );
+        })
+    }, [id])
+    
     
     const validate = () => {
         let errors = {}
@@ -28,41 +45,29 @@ export default function CreateQuestionPage() {
             errors.question = 'Question Content required'
         }
 
-
         return errors;
     }
 
-    const createSAQuestion = (e) => {
+    const editSAQuestion = (e) => {
         e.preventDefault();
         const isValid = validate();
 
         if(isValid.name || isValid.question) {
             setErrors(isValid);
         } else {
-            api.post('/questions/create', {
-                questionnaireId: id,
+            api.put(`/questions/updateQuestion/${id}`, {
+                questionnaireId: questionnaireID,
                 name: name,
                 question: question,
             }).then((result) => {
                 if (result.data) {
-                    setName('')
-                    setQuestion('')
+                    navigate(`/viewQuestionsPage/${questionnaireID}`)
                 } else {
                    console.log(result); 
                 }
             }).catch((error) => {
                 console.error("Error:", error );
             })
-        }
-
-    }
-
-    const finishSAQ = () => {
-        if(name && question) {
-            createSAQuestion();
-            navigate('/');
-        } else {
-            navigate('/');
         }
     }
   
@@ -108,8 +113,7 @@ export default function CreateQuestionPage() {
                         {/* </Form> */}
                         </Form>
                         <div className='btn-con d-flex justify-content-between'>
-                            <Button variant="primary" style={{minWidth: "100px"}} onClick={finishSAQ}>Finish and Submit</Button>
-                            <Button variant="primary" style={{minWidth: "100px"}} onClick={createSAQuestion}>Next Question</Button>
+                            <Button variant="primary" style={{minWidth: "100px"}} onClick={editSAQuestion}>Edit Question</Button>
                         </div>
                     </div>
                 </Container>

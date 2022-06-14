@@ -23,6 +23,15 @@ export default function ShortAnswerQuestionnairPage () {
         }
     }
 
+    const deleteQuestionnaire = async (qId) => {
+        const res = await api.delete(`/questionnaire/deleteQuestionnaire/${qId}`);
+        if(res.data) {
+            getQuestionnaire();
+        } else {
+            console.log(res);
+        }
+    }
+
     return (
         <>
             <Navbar />
@@ -62,7 +71,7 @@ export default function ShortAnswerQuestionnairPage () {
                                                         <Link to={`/createQuestionPage/${ques.id}`}>
                                                             <Button className='iconBtn'><IoIosAdd size={20} /></Button>
                                                         </Link>
-                                                        <Button className='iconBtn'><IoMdTrash /></Button>
+                                                        <Button className='iconBtn' onClick={(e) => {deleteQuestionnaire(ques.id)}}><IoMdTrash /></Button>
                                                     </td>
                                                 </tr>
                                             ))

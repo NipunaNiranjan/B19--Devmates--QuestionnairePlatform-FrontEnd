@@ -8,7 +8,7 @@ import api from '../axiosContact'
 
 function CreateSAQPage() {
 
-    const history = useNavigate();
+    const navigate = useNavigate();
 
     const [name, setName] = useState()
     const [description, setDescription] = useState()
@@ -53,7 +53,7 @@ function CreateSAQPage() {
             }).then((result) => {
                 if (result.data) {
                     const id = result.data.id;
-                    history(`/createQuestionPage/${id}`)
+                    navigate(`/createQuestionPage/${id}`)
                 } else {
                    console.log(result); 
                 }
