@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function CreateClass() {
   const [className, setClassName] = useState("");
-  const [noOfStudents, setNoOfStudents] = useState();
+  const [noOfStudents, setNoOfStudents] = useState(0);
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   //const [createdAt, setCreatedAt] = useState();
@@ -35,21 +35,24 @@ function CreateClass() {
 
   const isNotValid = () => {
     var temp = false;
+
+    //class name
     if (className === "") {
       seterrorName("Please enter name for  the class");
       temp = true;
-    } else if (className.length > 5) {
-      seterrorName("name is too long");
+    } else if (className.length > 20) {
+      seterrorName("name is too long,name should be less than 20 letters");
       temp = true;
     } else {
       seterrorName("");
     }
 
-    if (noOfStudents === "") {
+    //no of students
+    if (noOfStudents == 0) {
       seterrorNoOfStudents("Please enter no of students");
       temp = true;
-    } else if (noOfStudents > 0 && noOfStudents < 100) {
-      seterrorNoOfStudents("name is too long");
+    } else if (noOfStudents < 1 && noOfStudents > 100) {
+      seterrorNoOfStudents("input students between 1 & 100");
       temp = true;
     } else {
       seterrorNoOfStudents("");
