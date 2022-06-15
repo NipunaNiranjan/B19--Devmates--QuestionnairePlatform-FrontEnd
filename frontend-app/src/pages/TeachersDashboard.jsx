@@ -6,7 +6,7 @@ import CreateOrganization from "../components/createClassOrganization/CreateOrga
 import { Button } from "react-bootstrap";
 
 function TeachersDashboard() {
-  const [createClassButton, setCreateclassButton] = useState(false);
+  const [createClassButton, setCreateclassButton] = useState(true);
 
   return (
     <>
