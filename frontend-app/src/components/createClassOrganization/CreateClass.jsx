@@ -1,14 +1,30 @@
 import React from "react";
+import { useState } from "react";
 
 function CreateClass() {
+  const [className, setClassName] = useState("");
+  const [noOfStudents, setNoOfStudents] = useState("");
+  const [fromDate, setFromDate] = useState("");
+  const [toDate, setToDate] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(className);
+    console.log(noOfStudents);
+    console.log(fromDate);
+    console.log(toDate);
+    console.log(new Date().toLocaleString());
+  };
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="mb-3">
         <label>Name of the class</label>
         <input
           type="text"
           className="form-control"
           placeholder="Enter class name"
+          onChange={(e) => setClassName(e.target.value)}
         />
       </div>
       <div className="mb-3">
@@ -17,6 +33,7 @@ function CreateClass() {
           type="number"
           className="form-control"
           placeholder="Enter no. of students"
+          onChange={(e) => setNoOfStudents(e.target.value)}
         />
       </div>
 
@@ -27,7 +44,7 @@ function CreateClass() {
             <input
               type="date"
               className="form-control"
-              placeholder="Enter no. of students"
+              onChange={(e) => setFromDate(e.target.value)}
             />
           </div>
         </div>
@@ -37,7 +54,7 @@ function CreateClass() {
             <input
               type="date"
               className="form-control"
-              placeholder="Enter no. of students"
+              onChange={(e) => setToDate(e.target.value)}
             />
           </div>
         </div>
