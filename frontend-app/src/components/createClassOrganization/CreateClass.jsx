@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useState } from "react";
 
@@ -6,6 +7,7 @@ function CreateClass() {
   const [noOfStudents, setNoOfStudents] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
+  const [createdAt, setCreatedAt] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -14,6 +16,18 @@ function CreateClass() {
     console.log(fromDate);
     console.log(toDate);
     console.log(new Date().toLocaleString());
+
+    const temp = new Date().toLocaleString();
+    setCreatedAt(temp);
+
+    const postData = { className, noOfStudents, fromDate, toDate, temp };
+
+    axios
+      .post("http://localhost:8080/createClass", postData)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
