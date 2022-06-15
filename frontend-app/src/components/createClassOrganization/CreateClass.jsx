@@ -1,3 +1,4 @@
+import { toBeEmptyDOMElement } from "@testing-library/jest-dom/dist/matchers";
 import axios from "axios";
 import React from "react";
 import { useState } from "react";
@@ -7,20 +8,25 @@ function CreateClass() {
   const [noOfStudents, setNoOfStudents] = useState("");
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
-  const [createdAt, setCreatedAt] = useState();
+  //const [createdAt, setCreatedAt] = useState();
+
+  //validation error messsages
+  const [errorName, seterrorName] = useState();
+  const [errorNoOfStudents, seterrorNoOfStudents] = useState();
+  const [errorFromDate, seterrorFromDate] = useState();
+  const [errorTodate, seterrorToDate] = useState();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(className);
-    console.log(noOfStudents);
-    console.log(fromDate);
-    console.log(toDate);
-    console.log(new Date().toLocaleString());
+
+    if (isNotValid()) {
+      return;
+    }
 
     const temp = new Date().toLocaleString();
-    setCreatedAt(temp);
+    //setCreatedAt(temp);
 
-    const postData = { className, noOfStudents, fromDate, toDate, temp };
+    const postData = { className, noOfStudents, fromDate, toDate };
 
     axios
       .post("http://localhost:8080/createClass", postData)
@@ -28,6 +34,39 @@ function CreateClass() {
         console.log(res);
       })
       .catch((err) => console.log(err));
+  };
+
+  const isNotValid = () => {
+    var temp = false;
+    if (className === "") {
+      seterrorName("Please enter name for  the class");
+      temp = true;
+    } else {
+      seterrorName("");
+    }
+
+    if (noOfStudents === "") {
+      seterrorNoOfStudents("Please enter no of students");
+      temp = true;
+    } else {
+      seterrorNoOfStudents("");
+    }
+
+    if (fromDate === "") {
+      seterrorFromDate("Please enter date");
+      temp = true;
+    } else {
+      seterrorFromDate("");
+    }
+
+    if (toDate === "") {
+      seterrorToDate("Please enter date");
+      temp = true;
+    } else {
+      seterrorToDate("");
+    }
+
+    return temp;
   };
 
   return (
@@ -40,6 +79,7 @@ function CreateClass() {
           placeholder="Enter class name"
           onChange={(e) => setClassName(e.target.value)}
         />
+        <p className="text-danger">{errorName}</p>
       </div>
       <div className="mb-3">
         <label>No of Students</label>
@@ -49,6 +89,7 @@ function CreateClass() {
           placeholder="Enter no. of students"
           onChange={(e) => setNoOfStudents(e.target.value)}
         />
+        <p className="text-danger">{errorNoOfStudents}</p>
       </div>
 
       <div class="row">
@@ -60,6 +101,7 @@ function CreateClass() {
               className="form-control"
               onChange={(e) => setFromDate(e.target.value)}
             />
+            <p className="text-danger">{errorFromDate}</p>
           </div>
         </div>
         <div class="col">
@@ -70,6 +112,7 @@ function CreateClass() {
               className="form-control"
               onChange={(e) => setToDate(e.target.value)}
             />
+            <p className="text-danger">{errorTodate}</p>
           </div>
         </div>
       </div>
