@@ -5,7 +5,7 @@ import { useState } from "react";
 
 function CreateClass() {
   const [className, setClassName] = useState("");
-  const [noOfStudents, setNoOfStudents] = useState("");
+  const [noOfStudents, setNoOfStudents] = useState();
   const [fromDate, setFromDate] = useState("");
   const [toDate, setToDate] = useState("");
   //const [createdAt, setCreatedAt] = useState();
@@ -23,9 +23,6 @@ function CreateClass() {
       return;
     }
 
-    const temp = new Date().toLocaleString();
-    //setCreatedAt(temp);
-
     const postData = { className, noOfStudents, fromDate, toDate };
 
     axios
@@ -41,12 +38,18 @@ function CreateClass() {
     if (className === "") {
       seterrorName("Please enter name for  the class");
       temp = true;
+    } else if (className.length > 5) {
+      seterrorName("name is too long");
+      temp = true;
     } else {
       seterrorName("");
     }
 
     if (noOfStudents === "") {
       seterrorNoOfStudents("Please enter no of students");
+      temp = true;
+    } else if (noOfStudents > 0 && noOfStudents < 100) {
+      seterrorNoOfStudents("name is too long");
       temp = true;
     } else {
       seterrorNoOfStudents("");
