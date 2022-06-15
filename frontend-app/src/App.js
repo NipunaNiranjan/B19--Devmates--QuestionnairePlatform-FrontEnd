@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import AdminDashboardViewClasses from "./pages/AdminDashboardViewClasses";
 import AdminDashboardViewUsers from "./pages/AdminDashboardViewUsers";
 import TeacherClasses from "./pages/TeacherClasses";
 import TeachersDashboard from "./pages/TeachersDashboard";
@@ -12,6 +13,11 @@ function App() {
           exact
           path="/dashboard/admin/viewusers"
           element={<AdminDashboardViewUsers />}
+        />
+        <Route
+          exact
+          path="/dashboard/admin/viewClasses"
+          element={<AdminDashboardViewClasses />}
         />
         <Route
           exact
