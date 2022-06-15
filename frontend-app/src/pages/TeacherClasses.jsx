@@ -6,7 +6,9 @@ function TeacherClasses() {
       <NavbarComponent />
       <div
         style={{ display: "flex", height: "100vh", overflow: "scroll initial" }}
-      ></div>
+      >
+        <Sidebar />
+      </div>
     </>
   );
 }
