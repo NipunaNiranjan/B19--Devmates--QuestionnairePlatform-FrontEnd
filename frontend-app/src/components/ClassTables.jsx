@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Table } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 
 function ClassTables() {
   const [classes, setClasses] = useState([]);
@@ -11,7 +11,7 @@ function ClassTables() {
 
   function refreshClasses() {
     const ProjectAPI = axios
-      .get("http://localhost:8080//viewClasses")
+      .get("http://localhost:8080/viewClasses")
       .then((res) => {
         setClasses(res.data);
         console.log(res.data);
@@ -19,9 +19,21 @@ function ClassTables() {
       .catch((err) => console.log(err));
   }
 
+  function handeleDelete(data) {
+    axios
+      .delete("http://localhost:8080/admin/deleteClass/" + data)
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+
+    //refresh page
+    window.location.reload(false);
+  }
+
   return (
     <>
-      <Table striped bordered hover responsive>
+      <Table striped bordered hover responsive flex>
         <thead>
           <tr>
             <th>#</th>
@@ -33,14 +45,22 @@ function ClassTables() {
           </tr>
         </thead>
         <tbody>
-          {/* {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.username}</td>
-              <td>{user.role}</td>
-              <td>{user.status ? "true" : "false"}</td>
+          {classes.map((item) => (
+            <tr key={item.classId}>
+              <td>{item.classId}</td>
+              <td>{item.className}</td>
+              <td>{item.fromDate}</td>
+              <td>{item.toDate}</td>
+              <td>{item.noOfStudents}</td>
               <td>
-                {user.status ? (
+                <Button
+                  variant="warning"
+                  key={item.classId}
+                  onClick={() => handeleDelete(item.classId)}
+                >
+                  Delete
+                </Button>
+                {/* {user.status ? (
                   <Button
                     variant="warning"
                     key={user.id}
@@ -55,10 +75,10 @@ function ClassTables() {
                   >
                     activate
                   </Button>
-                )}
+                )} */}
               </td>
             </tr>
-          ))} */}
+          ))}
         </tbody>
       </Table>
     </>

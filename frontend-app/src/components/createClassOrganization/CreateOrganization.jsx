@@ -14,7 +14,7 @@ function CreateOrganization() {
       </div>
       <div className="d-grid">
         <button type="submit" className="btn btn-primary">
-          Sign Up
+          Create Organization
         </button>
       </div>
     </form>
