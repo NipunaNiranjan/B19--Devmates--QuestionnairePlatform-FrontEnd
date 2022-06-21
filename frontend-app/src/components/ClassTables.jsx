@@ -2,19 +2,6 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 
-const accessToken =
-  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1NTcwMTIyMCwiZXhwIjoxNjU1Nzg3NjIwfQ.bWKexTsV7g3YKPZE5TML6ZpBzFmZtKoUV8570Xz3KvCatHFzV5Gf9-tzlvZRJkUHw83lCSQwdQibEz1r0yRTMw";
-
-axios.interceptors.request.use(
-  (config) => {
-    config.headers.authorization = `Bearer ${accessToken}`;
-    return config;
-  },
-  (error) => {
-    return Promise.reject(error);
-  }
-);
-
 function ClassTables() {
   const [classes, setClasses] = useState([]);
 
@@ -24,7 +11,7 @@ function ClassTables() {
 
   function refreshClasses() {
     const ProjectAPI = axios
-      .get("http://localhost:8080/viewClasses")
+      .get("viewClasses")
       .then((res) => {
         setClasses(res.data);
         console.log(res.data);
@@ -34,7 +21,7 @@ function ClassTables() {
 
   function handeleDelete(data) {
     axios
-      .delete("http://localhost:8080/admin/deleteClass/" + data)
+      .delete("admin/deleteClass/" + data)
       .then((res) => {
         console.log(res);
       })
@@ -73,22 +60,6 @@ function ClassTables() {
                 >
                   Delete
                 </Button>
-                {/* {user.status ? (
-                  <Button
-                    variant="warning"
-                    key={user.id}
-                    onClick={() => handeleDeactivateUser(user.id)}
-                  >
-                    deactivate
-                  </Button>
-                ) : (
-                  <Button
-                    variant="primary"
-                    onClick={() => handeleActivateUser(user.id)}
-                  >
-                    activate
-                  </Button>
-                )} */}
               </td>
             </tr>
           ))}
