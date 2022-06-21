@@ -2,6 +2,19 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 
+const accessToken =
+  "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImlhdCI6MTY1NTcwMTIyMCwiZXhwIjoxNjU1Nzg3NjIwfQ.bWKexTsV7g3YKPZE5TML6ZpBzFmZtKoUV8570Xz3KvCatHFzV5Gf9-tzlvZRJkUHw83lCSQwdQibEz1r0yRTMw";
+
+axios.interceptors.request.use(
+  (config) => {
+    config.headers.authorization = `Bearer ${accessToken}`;
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 function ClassTables() {
   const [classes, setClasses] = useState([]);
 
