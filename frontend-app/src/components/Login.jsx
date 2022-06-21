@@ -22,7 +22,7 @@ function Login() {
         console.log(res.data.roles[0]);
         //navigate
         if (res.data.roles[0] === "ROLE_ADMIN") {
-          navigate("/dashboard/admin/viewusers");
+          navigate("/dashboard/admin");
         } else if (res.data.roles[0] === "ROLE_STUDENT") {
           //navigate("/dashboard/admin/viewusers");
         } else if (res.data.roles[0] === "ROLE_TEACHER") {

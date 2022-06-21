@@ -6,6 +6,7 @@ import AdminDashboardViewUsers from "./pages/AdminDashboardViewUsers";
 import TeacherClasses from "./pages/TeacherClasses";
 import TeachersDashboard from "./pages/TeachersDashboard";
 import Login from "./components/Login";
+import AdminDashboardMain from "./pages/AdminDashboardMain";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           path="/dashboard/teacher/viewClasses"
           element={<TeacherClasses />}
         />
+        <Route exact path="/dashboard/admin" element={<AdminDashboardMain />} />
       </Routes>
     </BrowserRouter>
   );
