@@ -30,8 +30,6 @@ function Login() {
         } else {
           alert("something went wrong");
         }
-
-        //navigate("/dashboard/admin/viewusers");
       })
       .catch(
         (err) => console.log(err)
