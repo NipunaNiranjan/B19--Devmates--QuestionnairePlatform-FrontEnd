@@ -7,6 +7,7 @@ import TeacherClasses from "./pages/TeacherClasses";
 import TeachersDashboard from "./pages/TeachersDashboard";
 import Login from "./components/Login";
 import AdminDashboardMain from "./pages/AdminDashboardMain";
+import StudentDashboardMain from "./pages/StudentDashboardMain";
 
 function App() {
   return (
@@ -34,6 +35,11 @@ function App() {
           element={<TeacherClasses />}
         />
         <Route exact path="/dashboard/admin" element={<AdminDashboardMain />} />
+        <Route
+          exact
+          path="/dashboard/student"
+          element={<StudentDashboardMain />}
+        />
       </Routes>
     </BrowserRouter>
   );

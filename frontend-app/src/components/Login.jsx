@@ -24,7 +24,7 @@ function Login() {
         if (res.data.roles[0] === "ROLE_ADMIN") {
           navigate("/dashboard/admin");
         } else if (res.data.roles[0] === "ROLE_STUDENT") {
-          //navigate("/dashboard/admin/viewusers");
+          navigate("/dashboard/student");
         } else if (res.data.roles[0] === "ROLE_TEACHER") {
           //navigate("/dashboard/admin/viewusers");
         } else {
