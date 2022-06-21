@@ -1,8 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Login() {
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -11,11 +13,30 @@ function Login() {
       password: password,
     };
 
-    axios.post(`http://localhost:8080/api/v1/auth/signin`, data).then((res) => {
-      console.log(res);
-      console.log(res.data);
-      localStorage.setItem("token", res.data.accessToken);
-    });
+    axios
+      .post(`http://localhost:8080/api/v1/auth/signin`, data)
+      .then((res) => {
+        console.log(res);
+        localStorage.setItem("token", res.data.accessToken);
+
+        console.log(res.data.roles[0]);
+        //navigate
+        if (res.data.roles[0] === "ROLE_ADMIN") {
+          navigate("/dashboard/admin/viewusers");
+        } else if (res.data.roles[0] === "ROLE_STUDENT") {
+          //navigate("/dashboard/admin/viewusers");
+        } else if (res.data.roles[0] === "ROLE_TEACHER") {
+          //navigate("/dashboard/admin/viewusers");
+        } else {
+          alert("something went wrong");
+        }
+
+        //navigate("/dashboard/admin/viewusers");
+      })
+      .catch(
+        (err) => console.log(err)
+        //alert("Wrong user name or password\n please re-enter the values")
+      );
   };
 
   const [username, setUserName] = useState("");

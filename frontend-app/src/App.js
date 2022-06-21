@@ -5,11 +5,13 @@ import AdminDashboardViewClasses from "./pages/AdminDashboardViewClasses";
 import AdminDashboardViewUsers from "./pages/AdminDashboardViewUsers";
 import TeacherClasses from "./pages/TeacherClasses";
 import TeachersDashboard from "./pages/TeachersDashboard";
+import Login from "./components/Login";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route exact path="/" element={<Login />} />
         <Route
           exact
           path="/dashboard/admin/viewusers"
