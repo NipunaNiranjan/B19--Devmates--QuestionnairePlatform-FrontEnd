@@ -4,7 +4,7 @@ import { Button, Col, Container, Row, Table } from "react-bootstrap";
 
 function StudentTable() {
   const [users, setUsers] = useState([]);
-  const [searchTerm, setSearcgTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     refreshUsers();
@@ -24,6 +24,14 @@ function StudentTable() {
       <Container fluid style={{ marginTop: "80px" }}>
         <Row className="justify-content-md-center">
           <Col xs lg="10">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Search.."
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
             <h1>Add student to class</h1>
             <Table borderless hover>
               <thead>
