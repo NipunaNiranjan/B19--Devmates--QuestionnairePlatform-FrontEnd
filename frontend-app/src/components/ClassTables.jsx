@@ -4,6 +4,7 @@ import { Button, Col, Container, Row, Table } from "react-bootstrap";
 
 function ClassTables() {
   const [classes, setClasses] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     refreshClasses();
@@ -36,6 +37,15 @@ function ClassTables() {
       <Container fluid style={{ marginTop: "80px" }}>
         <Row className="justify-content-md-center">
           <Col xs lg="10">
+            <h1>Classes</h1>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Search by class name.."
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
             <Table borderless hover>
               <thead>
                 <tr>
@@ -48,24 +58,36 @@ function ClassTables() {
                 </tr>
               </thead>
               <tbody>
-                {classes.map((item) => (
-                  <tr key={item.classId}>
-                    <td>{item.classId}</td>
-                    <td>{item.className}</td>
-                    <td>{item.fromDate}</td>
-                    <td>{item.toDate}</td>
-                    <td>{item.noOfStudents}</td>
-                    <td>
-                      <Button
-                        variant="warning"
-                        key={item.classId}
-                        onClick={() => handeleDelete(item.classId)}
-                      >
-                        Delete
-                      </Button>
-                    </td>
-                  </tr>
-                ))}
+                {classes
+                  .filter((item) => {
+                    if (searchTerm === "") {
+                      return item;
+                    } else if (
+                      item.className
+                        .toLowerCase()
+                        .includes(searchTerm.toLocaleLowerCase())
+                    ) {
+                      return item;
+                    }
+                  })
+                  .map((item) => (
+                    <tr key={item.classId}>
+                      <td>{item.classId}</td>
+                      <td>{item.className}</td>
+                      <td>{item.fromDate}</td>
+                      <td>{item.toDate}</td>
+                      <td>{item.noOfStudents}</td>
+                      <td>
+                        <Button
+                          variant="warning"
+                          key={item.classId}
+                          onClick={() => handeleDelete(item.classId)}
+                        >
+                          Delete
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           </Col>
