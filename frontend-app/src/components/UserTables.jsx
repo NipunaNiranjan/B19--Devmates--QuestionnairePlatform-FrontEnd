@@ -6,13 +6,15 @@ function UserTables() {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  const user_request_API = "api/v1/users/allUsers";
+
   useEffect(() => {
     refreshUsers();
   }, []);
 
   function refreshUsers() {
     const ProjectAPI = axios
-      .get("admin/view_users")
+      .get("user_request_API")
       .then((res) => {
         setUsers(res.data);
         console.log(res.data);
