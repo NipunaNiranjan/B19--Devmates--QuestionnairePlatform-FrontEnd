@@ -18,7 +18,9 @@ function Login() {
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.accessToken);
-        localStorage.setItem("user", res.data);
+        localStorage.setItem("username", res.data.username);
+        localStorage.setItem("userRole", res.data.roles[0]);
+        localStorage.setItem("userID", res.data.id);
 
         console.log(res.data.roles[0]);
         //navigate

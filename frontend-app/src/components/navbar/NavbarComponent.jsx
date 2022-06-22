@@ -6,14 +6,14 @@ import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 import "./NavbarComponent.css";
 
 function NavbarComponent() {
-  const [user, setUser] = useState();
+  const [username, setUsername] = useState("user");
 
   useEffect(() => {
     refreshUser();
   });
 
   const refreshUser = () => {
-    console.log(localStorage.getItem("user"));
+    setUsername(localStorage.getItem("username"));
   };
 
   return (
@@ -30,7 +30,7 @@ function NavbarComponent() {
       <Navbar.Collapse className="right-aligned">
         <Nav>
           <Nav.Link href="/logout">Log out</Nav.Link>
-          <NavDropdown align="end" title="user">
+          <NavDropdown align="end" title={username}>
             <NavDropdown.Item>Dashboard</NavDropdown.Item>
             <NavDropdown.Item>Account</NavDropdown.Item>
             <NavDropdown.Item>Grades</NavDropdown.Item>
