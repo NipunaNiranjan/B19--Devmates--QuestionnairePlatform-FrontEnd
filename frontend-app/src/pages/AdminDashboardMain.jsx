@@ -1,13 +1,26 @@
 import React from "react";
 import { Card, CardGroup } from "react-bootstrap";
-import { Link, NavLink } from "react-router-dom";
 import NavbarComponent from "../components/navbar/NavbarComponent";
 import Sidebar from "../components/sidebar/Sidebar";
 import { FcPortraitMode } from "react-icons/fc";
 import { FcReadingEbook } from "react-icons/fc";
 import { FcOrganization } from "react-icons/fc";
+import { useNavigate } from "react-router-dom";
 
 function AdminDashboardMain() {
+  const navigate = useNavigate();
+
+  const admin_viewUser_path = "/dashboard/admin/viewusers";
+  const admin_viewClass_path = "/dashboard/admin/viewClasses";
+
+  const handleManageUser = () => {
+    navigate(admin_viewUser_path);
+  };
+
+  const handleManageClasses = () => {
+    navigate(admin_viewClass_path);
+  };
+
   return (
     <>
       <NavbarComponent />
@@ -22,7 +35,10 @@ function AdminDashboardMain() {
           <CardGroup className="justify-content-center align-items-center ">
             <div className="row">
               <div className="col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
-                <Card className="h-100 w-100 " onClick={() => alert("hi")}>
+                <Card
+                  className="h-100 w-100 "
+                  onClick={() => handleManageUser()}
+                >
                   <center>
                     <FcPortraitMode className="mt-5" size="5rem" />
                   </center>
@@ -37,7 +53,7 @@ function AdminDashboardMain() {
               <div className=" col-12 col-sm-12 col-md-4 col-lg-4 col-xl-4">
                 <Card
                   className="h-100 w-100 "
-                  //  style={{ width: "300px", height: "250px", paddingTop: "60px" }}
+                  onClick={() => handleManageClasses()}
                 >
                   <center>
                     <FcReadingEbook className="mt-5" size="5rem" />
