@@ -15,6 +15,7 @@ function CreateClass() {
   const [errorNoOfStudents, seterrorNoOfStudents] = useState();
   const [errorFromDate, seterrorFromDate] = useState();
   const [errorTodate, seterrorToDate] = useState();
+  const [teacherId, setTeacherId] = useState(localStorage.getItem("userID"));
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -23,10 +24,20 @@ function CreateClass() {
       return;
     }
 
-    const postData = { className, noOfStudents, fromDate, toDate };
+    // const postData = { className, noOfStudents, fromDate, toDate };
+    var todayDate = new Date().toISOString().slice(0, 10);
 
     axios
-      .post("http://localhost:8080/createClass", postData)
+      .post("api/v1/class", {
+        className: className,
+        noOfStudents: noOfStudents,
+        fromDate: fromDate,
+        toDate: toDate,
+        createdAt: todayDate,
+        teacher: {
+          id: teacherId,
+        },
+      })
       .then((res) => {
         console.log(res);
       })

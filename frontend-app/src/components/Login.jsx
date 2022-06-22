@@ -29,7 +29,7 @@ function Login() {
         } else if (res.data.roles[0] === "ROLE_STUDENT") {
           navigate("/dashboard/student");
         } else if (res.data.roles[0] === "ROLE_TEACHER") {
-          //navigate("/dashboard/admin/viewusers");
+          navigate("/dashboard/teacher");
         } else {
           alert("something went wrong");
         }

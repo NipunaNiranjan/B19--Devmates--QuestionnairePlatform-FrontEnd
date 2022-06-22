@@ -17,35 +17,52 @@ function Sidebar() {
             href="/"
             className="text-decoration-none"
             style={{ color: "inherit" }}
-          >
-            Sidebar
-          </a>
+          ></a>
         </CDBSidebarHeader>
 
-        <CDBSidebarContent>
-          <CDBSidebarMenu>
-            <CDBSidebarMenuItem>
-              <a
-                href="/createSAQPage"
-                className="text-decoration-none"
-                style={{ color: "inherit" }}
-              >
-                Short Answer Questionnaire
-              </a>
-            </CDBSidebarMenuItem>
-            <CDBSidebarMenuItem>
-              <a
-                href="/createShortAnswer"
-                className="text-decoration-none"
-                style={{ color: "inherit" }}
-              >
-                File Upload Questionnaire
-              </a>
-            </CDBSidebarMenuItem>
-          </CDBSidebarMenu>
+        {/* teacher sidebar options */}
+        {localStorage.getItem("userRole") === "ROLE_TEACHER" ? (
+          <CDBSidebarContent>
+            <CDBSidebarMenu>
+              <CDBSidebarMenuItem>
+                <a
+                  href="/dashboard/teacher"
+                  className="text-decoration-none"
+                  style={{ color: "inherit" }}
+                >
+                  Create Class
+                </a>
+              </CDBSidebarMenuItem>
+              <CDBSidebarMenuItem>
+                <a
+                  href="/dashboard/teacher/viewClasses"
+                  className="text-decoration-none"
+                  style={{ color: "inherit" }}
+                >
+                  View Classes
+                </a>
+              </CDBSidebarMenuItem>
+              <CDBSidebarMenuItem>
+                <a
+                  href="/createSAQPage"
+                  className="text-decoration-none"
+                  style={{ color: "inherit" }}
+                >
+                  Short Answer Questionnaire
+                </a>
+              </CDBSidebarMenuItem>
+              <CDBSidebarMenuItem>
+                <a
+                  href="/createShortAnswer"
+                  className="text-decoration-none"
+                  style={{ color: "inherit" }}
+                >
+                  File Upload Questionnaire
+                </a>
+              </CDBSidebarMenuItem>
+            </CDBSidebarMenu>
 
-
-          {/* <a
+            {/* <a
             href="/"
             className="text-decoration-none"
             style={{ color: "inherit" }}
@@ -60,7 +77,8 @@ function Sidebar() {
           >
             Sidebar
           </a> */}
-        </CDBSidebarContent>
+          </CDBSidebarContent>
+        ) : null}
 
         <CDBSidebarFooter style={{ textAlign: "center" }}>
           <div
