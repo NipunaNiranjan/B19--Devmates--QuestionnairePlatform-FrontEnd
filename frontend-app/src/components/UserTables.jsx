@@ -4,6 +4,7 @@ import { Button, Col, Container, Row, Table } from "react-bootstrap";
 
 function UserTables() {
   const [users, setUsers] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     refreshUsers();
@@ -48,6 +49,15 @@ function UserTables() {
       <Container fluid style={{ marginTop: "80px" }}>
         <Row className="justify-content-md-center">
           <Col xs lg="10">
+            <h1>Users</h1>
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Search by user name.."
+              onChange={(e) => {
+                setSearchTerm(e.target.value);
+              }}
+            />
             <Table borderless hover>
               <thead>
                 <tr>
@@ -59,32 +69,44 @@ function UserTables() {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user) => (
-                  <tr key={user.id}>
-                    <td>{user.id}</td>
-                    <td>{user.username}</td>
-                    <td>{user.role}</td>
-                    <td>{user.status ? "true" : "false"}</td>
-                    <td>
-                      {user.status ? (
-                        <Button
-                          variant="warning"
-                          key={user.id}
-                          onClick={() => handeleDeactivateUser(user.id)}
-                        >
-                          deactivate
-                        </Button>
-                      ) : (
-                        <Button
-                          variant="primary"
-                          onClick={() => handeleActivateUser(user.id)}
-                        >
-                          activate
-                        </Button>
-                      )}
-                    </td>
-                  </tr>
-                ))}
+                {users
+                  .filter((user) => {
+                    if (searchTerm === "") {
+                      return user;
+                    } else if (
+                      user.username
+                        .toLowerCase()
+                        .includes(searchTerm.toLocaleLowerCase())
+                    ) {
+                      return user;
+                    }
+                  })
+                  .map((user) => (
+                    <tr key={user.id}>
+                      <td>{user.id}</td>
+                      <td>{user.username}</td>
+                      <td>{user.role}</td>
+                      <td>{user.status ? "true" : "false"}</td>
+                      <td>
+                        {user.status ? (
+                          <Button
+                            variant="warning"
+                            key={user.id}
+                            onClick={() => handeleDeactivateUser(user.id)}
+                          >
+                            deactivate
+                          </Button>
+                        ) : (
+                          <Button
+                            variant="primary"
+                            onClick={() => handeleActivateUser(user.id)}
+                          >
+                            activate
+                          </Button>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </Table>
           </Col>
