@@ -60,7 +60,7 @@ function TeacherClasses() {
                     <h5 className="card-title ">{item.className}</h5>
                   </div>
                   <div className="card-footer  fStyle">
-                    <small className="text-muted">Teacher's Name</small>
+                    <small className="text-muted">Click to add students</small>
                   </div>
                 </div>
               </div>
