@@ -26,7 +26,7 @@ function ClassTables() {
     }
 
     axios
-      .put("admin/deleteClass/" + data)
+      .put("api/v1/class/deleteClass/" + data)
       .then((res) => {
         console.log(res);
       })
