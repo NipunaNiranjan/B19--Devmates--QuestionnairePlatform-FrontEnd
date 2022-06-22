@@ -12,10 +12,10 @@ function ClassTables() {
 
   function refreshClasses() {
     const ProjectAPI = axios
-      .get("viewClasses")
+      .get("api/v1/class")
       .then((res) => {
-        setClasses(res.data);
-        console.log(res.data);
+        setClasses(res.data.body);
+        console.log(res.data.body);
       })
       .catch((err) => console.log(err));
   }
@@ -55,7 +55,8 @@ function ClassTables() {
                 <tr>
                   <th>#</th>
                   <th>Class Name </th>
-                  <th>Teacher</th>
+                  <th>Teacher's email</th>
+                  <th>Teacher's mobile</th>
                   <th>From</th>
                   <th>To</th>
                   <th>Max no of students</th>
@@ -80,7 +81,8 @@ function ClassTables() {
                       <tr key={item.classId}>
                         <td>{item.classId}</td>
                         <td>{item.className}</td>
-                        <td>{item.user.username}</td>
+                        <td>{item.teacher.email}</td>
+                        <td>{item.teacher.phone}</td>
                         <td>{item.fromDate}</td>
                         <td>{item.toDate}</td>
                         <td>{item.noOfStudents}</td>

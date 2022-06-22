@@ -14,7 +14,7 @@ function UserTables() {
 
   function refreshUsers() {
     const ProjectAPI = axios
-      .get("user_request_API")
+      .get("api/v1/users/allUsers")
       .then((res) => {
         setUsers(res.data);
         console.log(res.data);
