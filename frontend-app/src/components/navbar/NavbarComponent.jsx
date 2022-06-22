@@ -1,9 +1,21 @@
 import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
 import "./NavbarComponent.css";
 
 function NavbarComponent() {
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    refreshUser();
+  });
+
+  const refreshUser = () => {
+    console.log(localStorage.getItem("user"));
+  };
+
   return (
     <Navbar
       bg="myNavbarColor"

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Col, Container, Row, Table } from "react-bootstrap";
 
 function ClassTables() {
   const [classes, setClasses] = useState([]);
@@ -33,7 +33,46 @@ function ClassTables() {
 
   return (
     <>
-      <Table striped bordered hover responsive flex>
+      <Container fluid style={{ marginTop: "80px" }}>
+        <Row className="justify-content-md-center">
+          <Col xs lg="10">
+            <Table borderless hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Class Name </th>
+                  <th>From</th>
+                  <th>To</th>
+                  <th>Max no of students</th>
+                  <th>action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {classes.map((item) => (
+                  <tr key={item.classId}>
+                    <td>{item.classId}</td>
+                    <td>{item.className}</td>
+                    <td>{item.fromDate}</td>
+                    <td>{item.toDate}</td>
+                    <td>{item.noOfStudents}</td>
+                    <td>
+                      <Button
+                        variant="warning"
+                        key={item.classId}
+                        onClick={() => handeleDelete(item.classId)}
+                      >
+                        Delete
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+      </Container>
+
+      {/* <Table striped bordered hover responsive flex>
         <thead>
           <tr>
             <th>#</th>
@@ -64,7 +103,7 @@ function ClassTables() {
             </tr>
           ))}
         </tbody>
-      </Table>
+      </Table> */}
     </>
   );
 }

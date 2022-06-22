@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { Button, Table } from "react-bootstrap";
+import { Button, Col, Container, Row, Table } from "react-bootstrap";
 
 function UserTables() {
   const [users, setUsers] = useState([]);
@@ -11,7 +11,7 @@ function UserTables() {
 
   function refreshUsers() {
     const ProjectAPI = axios
-      .get("http://localhost:8080/admin/view_users")
+      .get("admin/view_users")
       .then((res) => {
         setUsers(res.data);
         console.log(res.data);
@@ -21,7 +21,7 @@ function UserTables() {
 
   function handeleDeactivateUser(data) {
     axios
-      .put("http://localhost:8080/admin/deactivate/" + data)
+      .put("admin/deactivate/" + data)
       .then((res) => {
         console.log(res);
       })
@@ -33,7 +33,7 @@ function UserTables() {
 
   function handeleActivateUser(data) {
     axios
-      .put("http://localhost:8080/admin/activate_user/" + data)
+      .put("admin/activate_user/" + data)
       .then((res) => {
         console.log(res);
       })
@@ -45,7 +45,52 @@ function UserTables() {
 
   return (
     <>
-      <Table striped bordered hover responsive>
+      <Container fluid style={{ marginTop: "80px" }}>
+        <Row className="justify-content-md-center">
+          <Col xs lg="10">
+            <Table borderless hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Username </th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.map((user) => (
+                  <tr key={user.id}>
+                    <td>{user.id}</td>
+                    <td>{user.username}</td>
+                    <td>{user.role}</td>
+                    <td>{user.status ? "true" : "false"}</td>
+                    <td>
+                      {user.status ? (
+                        <Button
+                          variant="warning"
+                          key={user.id}
+                          onClick={() => handeleDeactivateUser(user.id)}
+                        >
+                          deactivate
+                        </Button>
+                      ) : (
+                        <Button
+                          variant="primary"
+                          onClick={() => handeleActivateUser(user.id)}
+                        >
+                          activate
+                        </Button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </Col>
+        </Row>
+      </Container>
+      {/* <Table striped bordered hover responsive>
         <thead>
           <tr>
             <th>#</th>
@@ -83,7 +128,7 @@ function UserTables() {
             </tr>
           ))}
         </tbody>
-      </Table>
+      </Table> */}
     </>
   );
 }
