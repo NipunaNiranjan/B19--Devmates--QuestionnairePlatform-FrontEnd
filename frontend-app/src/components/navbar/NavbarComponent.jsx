@@ -3,10 +3,13 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import NavbarToggle from "react-bootstrap/esm/NavbarToggle";
+import { useNavigate } from "react-router-dom";
 import "./NavbarComponent.css";
 
 function NavbarComponent() {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("user");
+  const [userRole, setUserRole] = useState("user");
 
   useEffect(() => {
     refreshUser();
@@ -14,6 +17,22 @@ function NavbarComponent() {
 
   const refreshUser = () => {
     setUsername(localStorage.getItem("username"));
+    setUserRole(localStorage.getItem("userRole"));
+  };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate("/");
+  };
+
+  const handleNavigationHome = () => {
+    if (userRole === "ROLE_ADMIN") {
+      navigate("/dashboard/admin");
+    } else if (userRole === "ROLE_STUDENT") {
+      navigate("/dashboard/student");
+    } else if (userRole === "ROLE_TEACHER") {
+      //navigate("/dashboard/admin/viewusers");
+    }
   };
 
   return (
@@ -24,18 +43,22 @@ function NavbarComponent() {
       expand="lg"
       collapseOnSelect
     >
-      <Navbar.Brand>Home</Navbar.Brand>
+      <Navbar.Brand onClick={() => handleNavigationHome()}>Home</Navbar.Brand>
 
       <NavbarToggle />
       <Navbar.Collapse className="right-aligned">
         <Nav>
-          <Nav.Link href="/logout">Log out</Nav.Link>
+          <Nav.Link onClick={() => handleLogout()}>Log out</Nav.Link>
           <NavDropdown align="end" title={username}>
-            <NavDropdown.Item>Dashboard</NavDropdown.Item>
+            <NavDropdown.Item onClick={() => handleNavigationHome()}>
+              Dashboard
+            </NavDropdown.Item>
             <NavDropdown.Item>Account</NavDropdown.Item>
             <NavDropdown.Item>Grades</NavDropdown.Item>
             <hr />
-            <NavDropdown.Item>Log out</NavDropdown.Item>
+            <NavDropdown.Item onClick={() => handleLogout()}>
+              Log out
+            </NavDropdown.Item>
           </NavDropdown>
         </Nav>
       </Navbar.Collapse>
