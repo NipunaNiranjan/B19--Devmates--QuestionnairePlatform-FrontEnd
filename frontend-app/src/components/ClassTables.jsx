@@ -22,7 +22,7 @@ function ClassTables() {
 
   function handeleDelete(data) {
     axios
-      .delete("admin/deleteClass/" + data)
+      .put("admin/deleteClass/" + data)
       .then((res) => {
         console.log(res);
       })
