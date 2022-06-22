@@ -24,15 +24,15 @@ function StudentTable() {
       <Container fluid style={{ marginTop: "80px" }}>
         <Row className="justify-content-md-center">
           <Col xs lg="10">
+            <h1>Add student to class</h1>
             <input
               class="form-control"
               type="text"
-              placeholder="Search.."
+              placeholder="Search by user name.."
               onChange={(e) => {
                 setSearchTerm(e.target.value);
               }}
             />
-            <h1>Add student to class</h1>
             <Table borderless hover>
               <thead>
                 <tr>
@@ -44,7 +44,7 @@ function StudentTable() {
               <tbody>
                 {users
                   .filter((user) => {
-                    if (searchTerm == "") {
+                    if (searchTerm === "") {
                       return user;
                     } else if (
                       user.username
