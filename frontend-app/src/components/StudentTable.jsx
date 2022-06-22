@@ -4,6 +4,7 @@ import { Button, Col, Container, Row, Table } from "react-bootstrap";
 
 function StudentTable() {
   const [users, setUsers] = useState([]);
+  const [searchTerm, setSearcgTerm] = useState("");
 
   useEffect(() => {
     refreshUsers();
@@ -23,6 +24,7 @@ function StudentTable() {
       <Container fluid style={{ marginTop: "80px" }}>
         <Row className="justify-content-md-center">
           <Col xs lg="10">
+            <h1>Add student to class</h1>
             <Table borderless hover>
               <thead>
                 <tr>
@@ -32,20 +34,32 @@ function StudentTable() {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user) =>
-                  user.role === "ROLE_STUDENT" ? (
-                    <tr key={user.id}>
-                      <td>{user.id}</td>
-                      <td>{user.username}</td>
-                      <td>
-                        <Button
-                          variant="warning"
-                          key={user.id}
-                          //   onClick={}
-                        >
-                          Add+
-                        </Button>
-                        {/* {user.status ? (
+                {users
+                  .filter((user) => {
+                    if (searchTerm == "") {
+                      return user;
+                    } else if (
+                      user.username
+                        .toLowerCase()
+                        .includes(searchTerm.toLocaleLowerCase())
+                    ) {
+                      return user;
+                    }
+                  })
+                  .map((user) =>
+                    user.role === "ROLE_STUDENT" ? (
+                      <tr key={user.id}>
+                        <td>{user.id}</td>
+                        <td>{user.username}</td>
+                        <td>
+                          <Button
+                            variant="warning"
+                            key={user.id}
+                            //   onClick={}
+                          >
+                            Add+
+                          </Button>
+                          {/* {user.status ? (
                           <Button
                             variant="warning"
                             key={user.id}
@@ -61,10 +75,10 @@ function StudentTable() {
                             activate
                           </Button>
                         )} */}
-                      </td>
-                    </tr>
-                  ) : null
-                )}
+                        </td>
+                      </tr>
+                    ) : null
+                  )}
               </tbody>
             </Table>
           </Col>
