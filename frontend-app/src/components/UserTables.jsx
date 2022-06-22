@@ -90,45 +90,6 @@ function UserTables() {
           </Col>
         </Row>
       </Container>
-      {/* <Table striped bordered hover responsive>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>Username </th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>action</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user.id}>
-              <td>{user.id}</td>
-              <td>{user.username}</td>
-              <td>{user.role}</td>
-              <td>{user.status ? "true" : "false"}</td>
-              <td>
-                {user.status ? (
-                  <Button
-                    variant="warning"
-                    key={user.id}
-                    onClick={() => handeleDeactivateUser(user.id)}
-                  >
-                    deactivate
-                  </Button>
-                ) : (
-                  <Button
-                    variant="primary"
-                    onClick={() => handeleActivateUser(user.id)}
-                  >
-                    activate
-                  </Button>
-                )}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </Table> */}
     </>
   );
 }
