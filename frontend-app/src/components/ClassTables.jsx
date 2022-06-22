@@ -21,8 +21,12 @@ function ClassTables() {
   }
 
   function handeleDelete(data) {
+    if (!window.confirm("confirm delete")) {
+      return;
+    }
+
     axios
-      .delete("admin/deleteClass/" + data)
+      .put("admin/deleteClass/" + data)
       .then((res) => {
         console.log(res);
       })
@@ -71,25 +75,27 @@ function ClassTables() {
                       return item;
                     }
                   })
-                  .map((item) => (
-                    <tr key={item.classId}>
-                      <td>{item.classId}</td>
-                      <td>{item.className}</td>
-                      <td>{item.user.username}</td>
-                      <td>{item.fromDate}</td>
-                      <td>{item.toDate}</td>
-                      <td>{item.noOfStudents}</td>
-                      <td>
-                        <Button
-                          variant="warning"
-                          key={item.classId}
-                          onClick={() => handeleDelete(item.classId)}
-                        >
-                          Delete
-                        </Button>
-                      </td>
-                    </tr>
-                  ))}
+                  .map((item) =>
+                    item.flag ? null : (
+                      <tr key={item.classId}>
+                        <td>{item.classId}</td>
+                        <td>{item.className}</td>
+                        <td>{item.user.username}</td>
+                        <td>{item.fromDate}</td>
+                        <td>{item.toDate}</td>
+                        <td>{item.noOfStudents}</td>
+                        <td>
+                          <Button
+                            variant="warning"
+                            key={item.classId}
+                            onClick={() => handeleDelete(item.classId)}
+                          >
+                            Delete
+                          </Button>
+                        </td>
+                      </tr>
+                    )
+                  )}
               </tbody>
             </Table>
           </Col>
