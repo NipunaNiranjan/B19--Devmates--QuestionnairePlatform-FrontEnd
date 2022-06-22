@@ -21,6 +21,10 @@ function ClassTables() {
   }
 
   function handeleDelete(data) {
+    if (!window.confirm("confirm delete")) {
+      return;
+    }
+
     axios
       .put("admin/deleteClass/" + data)
       .then((res) => {
