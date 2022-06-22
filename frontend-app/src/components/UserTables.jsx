@@ -24,7 +24,7 @@ function UserTables() {
 
   function handeleDeactivateUser(data) {
     axios
-      .put("admin/deactivate/" + data)
+      .put("api/v1/users/deactivate/" + data)
       .then((res) => {
         console.log(res);
       })
@@ -36,7 +36,7 @@ function UserTables() {
 
   function handeleActivateUser(data) {
     axios
-      .put("admin/activate_user/" + data)
+      .put("api/v1/users/admin/active/" + data)
       .then((res) => {
         console.log(res);
       })
