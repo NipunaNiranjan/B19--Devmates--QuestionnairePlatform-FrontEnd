@@ -1,8 +1,25 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import NavbarComponent from "../components/navbar/NavbarComponent";
 import Sidebar from "../components/sidebar/Sidebar";
 
 function StudentDashboardMain() {
+  const [classes, setClasses] = useState([]);
+
+  useEffect(() => {
+    refreshClasses();
+  }, []);
+
+  function refreshClasses() {
+    const ProjectAPI = axios
+      .get("api/v1/class/student/4")
+      .then((res) => {
+        setClasses(res.data.body);
+        console.log(res.data.body);
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <>
       <NavbarComponent />

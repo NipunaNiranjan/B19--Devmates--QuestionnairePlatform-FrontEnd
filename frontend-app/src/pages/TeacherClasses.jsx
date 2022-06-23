@@ -1,10 +1,12 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import NavbarComponent from "../components/navbar/NavbarComponent";
 import Sidebar from "../components/sidebar/Sidebar";
 
 function TeacherClasses() {
   const [classes, setClasses] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     refreshClasses();
@@ -19,6 +21,10 @@ function TeacherClasses() {
       })
       .catch((err) => console.log(err));
   }
+
+  const handleAddStudentClick = () => {
+    navigate("/dashboard/teacher/addStudentClass");
+  };
 
   return (
     <>
@@ -60,7 +66,16 @@ function TeacherClasses() {
                     <h5 className="card-title ">{item.className}</h5>
                   </div>
                   <div className="card-footer  fStyle">
-                    <small className="text-muted">Click to add students</small>
+                    <small className="text-muted">
+                      {" "}
+                      <Link
+                        to={
+                          "/dashboard/teacher/addStudentClass/" + item.classId
+                        }
+                      >
+                        Click to add students
+                      </Link>{" "}
+                    </small>
                   </div>
                 </div>
               </div>

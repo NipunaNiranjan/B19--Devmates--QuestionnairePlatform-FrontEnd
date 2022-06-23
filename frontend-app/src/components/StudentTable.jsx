@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
+import { useLocation, useParams } from "react-router-dom";
 
 function StudentTable() {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+
+  let params = useParams();
 
   useEffect(() => {
     refreshUsers();
@@ -12,13 +15,27 @@ function StudentTable() {
 
   function refreshUsers() {
     const ProjectAPI = axios
-      .get("admin/view_users")
+      .get("api/v1/users/allUsers")
       .then((res) => {
         setUsers(res.data);
         console.log(res.data);
       })
       .catch((err) => console.log(err));
   }
+
+  const HandleAddUser = (sid) => {
+    const classId = params.classId;
+    console.log(sid);
+
+    axios
+      .put(`api/v1/class/add?studentId=${sid}&classId=${classId}`)
+      .then((res) => {
+        console.log(res.data);
+        alert(res.data.message);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
       <Container fluid style={{ marginTop: "80px" }}>
@@ -63,7 +80,7 @@ function StudentTable() {
                           <Button
                             variant="warning"
                             key={user.id}
-                            //   onClick={}
+                            onClick={() => HandleAddUser(user.id)}
                           >
                             Add+
                           </Button>
