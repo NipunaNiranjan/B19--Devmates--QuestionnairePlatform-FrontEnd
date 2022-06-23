@@ -61,7 +61,7 @@ function Login() {
               <li className="signin-active">Log In here</li>
             </ul>
           </div>
-          <div ng-app ng-init="checked = false">
+          <div>
             <form className="form-signin" action method="post" name="form">
               <input
                 className="form-styling"
@@ -69,6 +69,8 @@ function Login() {
                 name="username"
                 placeholder="User Name"
                 required
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
               />
 
               <input
@@ -77,10 +79,12 @@ function Login() {
                 name="password"
                 placeholder="Password"
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
 
               <div className="btn-animate">
-                <a className="btn-signin" href type="button">
+                <a className="btn-signin" type="submit" onClick={handleSubmit}>
                   Login
                 </a>
               </div>
@@ -102,40 +106,6 @@ function Login() {
         </div>
       </div>
     </div>
-    // <form className="col-8 offset-2 " onClick={handleSubmit}>
-    //   <h3>Login</h3>
-
-    //   <div className="form-group">
-    //     <label>Email</label>
-    //     <input
-    //       type="text"
-    //       className="form-control"
-    //       placeholder="Enter username"
-    //       id="username"
-    //       value={username}
-    //       onChange={(e) => setUserName(e.target.value)}
-    //     />
-    //   </div>
-
-    //   <div className="form-group">
-    //     <label>Password</label>
-    //     <input
-    //       type="password"
-    //       className="form-control"
-    //       placeholder="Enter password"
-    //       id="password"
-    //       value={password}
-    //       onChange={(e) => setPassword(e.target.value)}
-    //     />
-    //   </div>
-
-    //   <button type="submit" className="btn btn-dark btn-lg btn-block">
-    //     Login
-    //   </button>
-    //   <p className="forgot-password text-right">
-    //     Not registered <Link to="/register">Register?</Link>
-    //   </p>
-    // </form>
   );
 }
 
