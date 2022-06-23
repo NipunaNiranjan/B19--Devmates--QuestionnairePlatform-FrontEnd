@@ -23,7 +23,7 @@ function UserTables() {
   }
 
   function handeleDeactivateUser(data) {
-    if (!window.confirm("confirm deactivate")) {
+    if (!window.confirm("confirm deactivate user")) {
       return;
     }
     axios
