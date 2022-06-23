@@ -7,6 +7,7 @@ import {
   CDBSidebarMenu,
   CDBSidebarMenuItem,
 } from "cdbreact";
+import { NavLink } from "react-router-dom";
 
 function Sidebar() {
   return (
@@ -61,22 +62,23 @@ function Sidebar() {
                 </a>
               </CDBSidebarMenuItem>
             </CDBSidebarMenu>
+          </CDBSidebarContent>
+        ) : null}
 
-            {/* <a
-            href="/"
-            className="text-decoration-none"
-            style={{ color: "inherit" }}
-          >
-            Sidebar
-          </a>
-
-          <a
-            href="/"
-            className="text-decoration-none"
-            style={{ color: "inherit" }}
-          >
-            Sidebar
-          </a> */}
+        {/* Student sidebar options */}
+        {localStorage.getItem("userRole") === "ROLE_STUDENT" ? (
+          <CDBSidebarContent>
+            <CDBSidebarMenu>
+              <NavLink
+                exact
+                to="/dashboard/student"
+                activeClassName="activeClicked"
+              >
+                <CDBSidebarMenuItem icon="columns">
+                  Dashboard
+                </CDBSidebarMenuItem>
+              </NavLink>
+            </CDBSidebarMenu>
           </CDBSidebarContent>
         ) : null}
 
