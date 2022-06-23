@@ -108,7 +108,7 @@ function Sidebar() {
               {classes.map((item) => (
                 <NavLink
                   exact
-                  to={"/dashboard/Class/" + item.classId}
+                  to={"/dashboard/Class/" + item.classId + "/" + item.className}
                   activeClassName="activeClicked"
                 >
                   <CDBSidebarMenuItem icon="book">
