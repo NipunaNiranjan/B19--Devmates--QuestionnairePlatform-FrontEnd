@@ -25,7 +25,34 @@ function Sidebar() {
         {localStorage.getItem("userRole") === "ROLE_TEACHER" ? (
           <CDBSidebarContent>
             <CDBSidebarMenu>
-              <CDBSidebarMenuItem>
+              <NavLink
+                exact
+                to="/dashboard/teacher/viewClasses"
+                activeClassName="activeClicked"
+              >
+                <CDBSidebarMenuItem icon="th-large">
+                  Dashboard
+                </CDBSidebarMenuItem>
+              </NavLink>
+              <NavLink
+                exact
+                to="/dashboard/teacher"
+                activeClassName="activeClicked"
+              >
+                <CDBSidebarMenuItem icon="sticky-note">
+                  Create Class
+                </CDBSidebarMenuItem>
+              </NavLink>
+              <NavLink
+                exact
+                to="/dashboard/teacher/viewClasses"
+                activeClassName="activeClicked"
+              >
+                <CDBSidebarMenuItem icon="table">
+                  View Classes
+                </CDBSidebarMenuItem>
+              </NavLink>
+              {/* <CDBSidebarMenuItem icon="book">
                 <a
                   href="/dashboard/teacher"
                   className="text-decoration-none"
@@ -33,8 +60,8 @@ function Sidebar() {
                 >
                   Create Class
                 </a>
-              </CDBSidebarMenuItem>
-              <CDBSidebarMenuItem>
+              </CDBSidebarMenuItem> */}
+              {/* <CDBSidebarMenuItem>
                 <a
                   href="/dashboard/teacher/viewClasses"
                   className="text-decoration-none"
@@ -42,7 +69,7 @@ function Sidebar() {
                 >
                   View Classes
                 </a>
-              </CDBSidebarMenuItem>
+              </CDBSidebarMenuItem> */}
               <CDBSidebarMenuItem>
                 <a
                   href="/createSAQPage"
@@ -74,9 +101,17 @@ function Sidebar() {
                 to="/dashboard/student"
                 activeClassName="activeClicked"
               >
-                <CDBSidebarMenuItem icon="columns">
+                <CDBSidebarMenuItem icon="th-large">
                   Dashboard
                 </CDBSidebarMenuItem>
+              </NavLink>
+              {/* classes of student */}
+              <NavLink
+                exact
+                to="/dashboard/student"
+                activeClassName="activeClicked"
+              >
+                <CDBSidebarMenuItem icon="book">class</CDBSidebarMenuItem>
               </NavLink>
             </CDBSidebarMenu>
           </CDBSidebarContent>
