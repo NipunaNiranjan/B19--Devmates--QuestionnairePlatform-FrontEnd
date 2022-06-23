@@ -30,13 +30,54 @@ function Sidebar() {
   return (
     <div>
       <CDBSidebar textColor="#fff" backgroundColor="#333">
-        <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
+        <CDBSidebarHeader
+          title="Expand"
+          prefix={<i className="fa fa-bars fa-large"></i>}
+        >
           <a
             href="/"
             className="text-decoration-none"
             style={{ color: "inherit" }}
           ></a>
         </CDBSidebarHeader>
+
+        {/* Admin sidebar options */}
+        {localStorage.getItem("userRole") === "ROLE_ADMIN" ? (
+          <CDBSidebarContent>
+            <CDBSidebarMenu>
+              <NavLink
+                exact
+                to="/dashboard/admin"
+                activeClassName="activeClicked"
+                title="Dashboard"
+              >
+                <CDBSidebarMenuItem icon="th-large">
+                  Dashboard
+                </CDBSidebarMenuItem>
+              </NavLink>
+              <NavLink
+                exact
+                to="/dashboard/admin/viewusers"
+                activeClassName="activeClicked"
+                title="Manage users"
+              >
+                <CDBSidebarMenuItem icon="table">
+                  Manage users
+                </CDBSidebarMenuItem>
+              </NavLink>
+              <NavLink
+                exact
+                to="/dashboard/admin/viewClasses"
+                activeClassName="activeClicked"
+                title="Manage Classes"
+              >
+                <CDBSidebarMenuItem icon="table">
+                  Manage Classes
+                </CDBSidebarMenuItem>
+              </NavLink>
+            </CDBSidebarMenu>
+          </CDBSidebarContent>
+        ) : null}
 
         {/* teacher sidebar options */}
         {localStorage.getItem("userRole") === "ROLE_TEACHER" ? (
@@ -46,6 +87,7 @@ function Sidebar() {
                 exact
                 to="/dashboard/teacher/viewClasses"
                 activeClassName="activeClicked"
+                title="Dashboard"
               >
                 <CDBSidebarMenuItem icon="th-large">
                   Dashboard
@@ -55,6 +97,7 @@ function Sidebar() {
                 exact
                 to="/dashboard/teacher"
                 activeClassName="activeClicked"
+                title="Create Class"
               >
                 <CDBSidebarMenuItem icon="sticky-note">
                   Create Class
@@ -64,6 +107,7 @@ function Sidebar() {
                 exact
                 to="/dashboard/teacher/viewClasses"
                 activeClassName="activeClicked"
+                title="View Classes"
               >
                 <CDBSidebarMenuItem icon="table">
                   View Classes
@@ -99,6 +143,7 @@ function Sidebar() {
                 exact
                 to="/dashboard/student"
                 activeClassName="activeClicked"
+                title="Dashboard"
               >
                 <CDBSidebarMenuItem icon="th-large">
                   Dashboard
@@ -110,6 +155,7 @@ function Sidebar() {
                   exact
                   to={"/dashboard/Class/" + item.classId + "/" + item.className}
                   activeClassName="activeClicked"
+                  title={item.className}
                 >
                   <CDBSidebarMenuItem icon="book">
                     {item.className}
@@ -119,7 +165,7 @@ function Sidebar() {
             </CDBSidebarMenu>
           </CDBSidebarContent>
         ) : null}
-
+        {/* 
         <CDBSidebarFooter style={{ textAlign: "center" }}>
           <div
             className="sidebar-btn-wrapper"
@@ -129,7 +175,7 @@ function Sidebar() {
           >
             Sidebar Footer
           </div>
-        </CDBSidebarFooter>
+        </CDBSidebarFooter> */}
       </CDBSidebar>
     </div>
   );
