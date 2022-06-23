@@ -13,7 +13,7 @@ function Class() {
 
   useEffect(() => {
     refreshActivities();
-  }, []);
+  }, [activities]);
 
   function refreshActivities() {
     axios
@@ -27,7 +27,6 @@ function Class() {
 
   return (
     <>
-      {console.log(params.className)}
       <NavbarComponent />
       <div
         style={{ display: "flex", height: "100vh", overflow: "scroll initial" }}
