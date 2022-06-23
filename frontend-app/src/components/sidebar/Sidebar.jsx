@@ -52,24 +52,6 @@ function Sidebar() {
                   View Classes
                 </CDBSidebarMenuItem>
               </NavLink>
-              {/* <CDBSidebarMenuItem icon="book">
-                <a
-                  href="/dashboard/teacher"
-                  className="text-decoration-none"
-                  style={{ color: "inherit" }}
-                >
-                  Create Class
-                </a>
-              </CDBSidebarMenuItem> */}
-              {/* <CDBSidebarMenuItem>
-                <a
-                  href="/dashboard/teacher/viewClasses"
-                  className="text-decoration-none"
-                  style={{ color: "inherit" }}
-                >
-                  View Classes
-                </a>
-              </CDBSidebarMenuItem> */}
               <CDBSidebarMenuItem>
                 <a
                   href="/createSAQPage"
