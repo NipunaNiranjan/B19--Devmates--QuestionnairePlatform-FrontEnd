@@ -23,6 +23,9 @@ function UserTables() {
   }
 
   function handeleDeactivateUser(data) {
+    if (!window.confirm("confirm deactivate")) {
+      return;
+    }
     axios
       .put("api/v1/users/deactivate/" + data)
       .then((res) => {
