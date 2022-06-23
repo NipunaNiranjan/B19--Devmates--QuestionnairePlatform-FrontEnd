@@ -37,37 +37,26 @@ function Class() {
         {/* content */}
         <div className="container cont_style p-5 mb-5  text-dark ">
           <div className="col-12 justify-content-left align-items-left">
-            <h4 className="text-md-left justify-content-left  mt-3 align">
-              Class-Quizes
-            </h4>
+            <h1 className="text-md-left justify-content-left  mt-3 align">
+              {params.className}
+            </h1>
           </div>
 
-          <div className="row col-12 ">
-            <div className=" card_style mt-5 ">
-              <div className="card-body  d-flex r  not-found-container">
-                <div className="card_icon_div_style "></div>
-                <div className="card_text_div_style">
-                  <h4 className="d-flex  not-found-container paddingLeft: 5px text-black ">
-                    Quiz 1
-                  </h4>
-                  <h5>Description</h5>
+          {activities.map((item) => (
+            <div className="row col-12 ">
+              <div className=" card_style mt-5 ">
+                <div className="card-body  d-flex r  not-found-container">
+                  <div className="card_icon_div_style "></div>
+                  <div className="card_text_div_style">
+                    <h4 className="d-flex  not-found-container paddingLeft: 5px text-black ">
+                      {item.name}
+                    </h4>
+                    <h6>{item.description}</h6>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="row col-12 ">
-            <div className=" card_style mt-5 ">
-              <div className="card-body  d-flex r  not-found-container">
-                <div className="card_icon_div_style "></div>
-                <div className="card_text_div_style">
-                  <h4 className="d-flex  not-found-container paddingLeft: 5px text-black ">
-                    Quiz 2
-                  </h4>
-                  <h5>Description</h5>
-                </div>
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </>
