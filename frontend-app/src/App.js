@@ -44,7 +44,7 @@ function App() {
         />
         <Route
           exact
-          path="/dashboard/teacher/addStudentClass/:classId"
+          path="/dashboard/teacher/addStudentClass/:classId/:className"
           element={<AddStudents />}
         />
         <Route

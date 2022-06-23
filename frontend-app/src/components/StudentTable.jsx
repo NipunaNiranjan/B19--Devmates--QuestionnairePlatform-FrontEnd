@@ -41,7 +41,7 @@ function StudentTable() {
       <Container fluid style={{ marginTop: "80px" }}>
         <Row className="justify-content-md-center">
           <Col xs lg="10">
-            <h1>Add student to class</h1>
+            <h1>Add student to class - {params.className}</h1>
             <input
               class="form-control"
               type="text"

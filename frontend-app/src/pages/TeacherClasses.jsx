@@ -70,7 +70,10 @@ function TeacherClasses() {
                       {" "}
                       <Link
                         to={
-                          "/dashboard/teacher/addStudentClass/" + item.classId
+                          "/dashboard/teacher/addStudentClass/" +
+                          item.classId +
+                          "/" +
+                          item.className
                         }
                       >
                         Click to add students
