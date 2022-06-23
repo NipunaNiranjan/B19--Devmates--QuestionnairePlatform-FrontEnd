@@ -1,0 +1,26 @@
+.cont_style {
+  /* background-color: #c5cecb; */
+  /* border-radius: 12px; */
+}
+.card_style {
+  background-color: #f0f0f0;
+  padding-left: 5px;
+  border-radius: 8px;
+}
+.card_in_style {
+  display: "flex";
+  justify-content: "space-between";
+  margin: "20px";
+}
+
+.card_icon_div_style {
+  display: "flex";
+  justify-content: "space-between";
+  margin: "20px";
+}
+
+.card_text_div_style {
+  display: "flex";
+  justify-content: "space-between";
+  margin-left: 50px;
+}

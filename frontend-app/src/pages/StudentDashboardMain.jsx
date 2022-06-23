@@ -43,7 +43,10 @@ function StudentDashboardMain() {
                       {" "}
                       <Link
                         to={
-                          "/dashboard/teacher/addStudentClass/" + item.classId
+                          "/dashboard/Class/" +
+                          item.classId +
+                          "/" +
+                          item.className
                         }
                       >
                         Click to enter class-{">"}

@@ -9,6 +9,7 @@ import Login from "./components/Login";
 import AdminDashboardMain from "./pages/AdminDashboardMain";
 import StudentDashboardMain from "./pages/StudentDashboardMain";
 import AddStudents from "./pages/AddStudents";
+import Class from "./pages/Class";
 
 function App() {
   return (
@@ -45,6 +46,11 @@ function App() {
           exact
           path="/dashboard/teacher/addStudentClass/:classId"
           element={<AddStudents />}
+        />
+        <Route
+          exact
+          path="/dashboard/class/:classId/:className"
+          element={<Class />}
         />
       </Routes>
     </BrowserRouter>
