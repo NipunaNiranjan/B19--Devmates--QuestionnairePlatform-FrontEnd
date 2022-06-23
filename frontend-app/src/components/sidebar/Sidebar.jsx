@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   CDBSidebar,
   CDBSidebarContent,
@@ -8,8 +8,25 @@ import {
   CDBSidebarMenuItem,
 } from "cdbreact";
 import { NavLink } from "react-router-dom";
+import axios from "axios";
 
 function Sidebar() {
+  const [classes, setClasses] = useState([]);
+
+  useEffect(() => {
+    refreshClasses();
+  }, []);
+
+  function refreshClasses() {
+    axios
+      .get("api/v1/class/student/4")
+      .then((res) => {
+        setClasses(res.data.body);
+        console.log(res.data.body);
+      })
+      .catch((err) => console.log(err));
+  }
+
   return (
     <div>
       <CDBSidebar textColor="#fff" backgroundColor="#333">
@@ -88,13 +105,17 @@ function Sidebar() {
                 </CDBSidebarMenuItem>
               </NavLink>
               {/* classes of student */}
-              <NavLink
-                exact
-                to="/dashboard/student"
-                activeClassName="activeClicked"
-              >
-                <CDBSidebarMenuItem icon="book">class</CDBSidebarMenuItem>
-              </NavLink>
+              {classes.map((item) => (
+                <NavLink
+                  exact
+                  to="/dashboard/student"
+                  activeClassName="activeClicked"
+                >
+                  <CDBSidebarMenuItem icon="book">
+                    {item.className}
+                  </CDBSidebarMenuItem>
+                </NavLink>
+              ))}
             </CDBSidebarMenu>
           </CDBSidebarContent>
         ) : null}
