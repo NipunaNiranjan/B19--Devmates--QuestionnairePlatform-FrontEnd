@@ -35,10 +35,10 @@ function Login() {
           alert("something went wrong");
         }
       })
-      .catch(
-        (err) => console.log(err)
-        //alert("Wrong user name or password\n please re-enter the values")
-      );
+      .catch((err) => {
+        console.log(err);
+        alert("enter correct username or password");
+      });
   };
 
   const [username, setUserName] = useState("");
