@@ -40,6 +40,10 @@ function CreateClass() {
       })
       .then((res) => {
         console.log(res);
+        alert("class created successfully");
+
+        //refresh page
+        window.location.reload(false);
       })
       .catch((err) => console.log(err));
   };
@@ -52,8 +56,8 @@ function CreateClass() {
     if (className === "") {
       seterrorName("Please enter name for  the class");
       temp = true;
-    } else if (className.length > 20) {
-      seterrorName("name is too long,name should be less than 20 letters");
+    } else if (className.length > 30) {
+      seterrorName("name is too long,name should be less than 30 letters");
       temp = true;
     } else {
       seterrorName("");
