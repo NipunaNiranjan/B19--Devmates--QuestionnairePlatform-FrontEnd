@@ -1,9 +1,16 @@
 .body {
-  background: linear-gradient(rgb(181, 214, 222), rgb(181, 214, 222)),
-    url(https://dl.dropboxusercontent.com/u/22006283/preview/codepen/sky-clouds-cloudy-mountain.jpg)
-      no-repeat center center fixed;
+  /* background:
+      linear-gradient(rgb(181, 214, 222),
+          rgb(181, 214, 222)),
+      url(https://dl.dropboxusercontent.com/u/22006283/preview/codepen/sky-clouds-cloudy-mountain.jpg) no-repeat center center fixed;
+   */
+
+  background: linear-gradient(rgba(21, 21, 32, 0.75), rgba(35, 35, 45, 0.75)),
+    url("/src/images/loginwallpaper.jpg");
+  background-position: center;
   background-size: cover;
-  height: 815px;
+  background-repeat: no-repeat;
+  min-height: 845px !important;
 }
 
 .container1 {
