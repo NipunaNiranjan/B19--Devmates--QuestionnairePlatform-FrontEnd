@@ -46,6 +46,7 @@ function CreateClass() {
 
   const isNotValid = () => {
     var temp = false;
+    var todayDate = new Date().toISOString().slice(0, 10);
 
     //class name
     if (className === "") {
@@ -62,7 +63,7 @@ function CreateClass() {
     if (noOfStudents == 0) {
       seterrorNoOfStudents("Please enter no of students");
       temp = true;
-    } else if (noOfStudents < 1 && noOfStudents > 100) {
+    } else if (noOfStudents < 1 || noOfStudents > 100) {
       seterrorNoOfStudents("input students between 1 & 100");
       temp = true;
     } else {
@@ -72,6 +73,8 @@ function CreateClass() {
     if (fromDate === "") {
       seterrorFromDate("Please enter date");
       temp = true;
+    } else if (fromDate < todayDate) {
+      seterrorFromDate("invalid date");
     } else {
       seterrorFromDate("");
     }
@@ -81,6 +84,12 @@ function CreateClass() {
       temp = true;
     } else {
       seterrorToDate("");
+    }
+
+    if (fromDate > toDate) {
+      seterrorFromDate("invalid date");
+      seterrorToDate("invalid date");
+      temp = true;
     }
 
     return temp;
