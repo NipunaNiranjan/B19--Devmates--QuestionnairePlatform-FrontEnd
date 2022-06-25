@@ -60,22 +60,40 @@ export default function ShortAnswerQuestionnairPage () {
                                     } */}
                                     {
                                         questionnaire.length > 0 ? (
-                                            questionnaire.map((ques) => (
+                                            questionnaire.map((ques) => 
+                                            {console.log(ques.type)
+                                            return(
+
                                                 <tr key={ques.id}>
                                                     <td>{ques.name}</td>
                                                     <td>{ques.description}</td>
                                                     <td className='tblOption'>
-                                                        <Link to={`/viewQuestionsPage/${ques.id}`}>
-                                                            <Button className='iconBtn'><IoIosEye /></Button>
-                                                        </Link>
-                                                        <Link to={`/createQuestionPage/${ques.id}`}>
+                                                        {ques.type=='shortQ' &&
+                                                            (<Link to={`/viewQuestionsPage/${ques.id}`}>
+                                                            <Button className='iconBtn' onClick={()=> {console.log("shortQ")}}><IoIosEye/></Button>
+                                                        </Link>)}
+                                                        {ques.type=='fileQ' &&
+                                                            (<Link to={`/savedPdf/${ques.id}`}>
+                                                            <Button className='iconBtn' onClick={()=> {console.log("fileQ")}}><IoIosEye/></Button>
+                                                        </Link>)}
+
+                                                        {ques.type=='shortQ' &&
+                                                        (<Link to={`/createQuestionPage/${ques.id}`}>
                                                             <Button className='iconBtn'><IoIosAdd size={20} /></Button>
-                                                        </Link>
+                                                        </Link>)
+                                                        }
+
+                                                        {ques.type=='fileQ' && 
+                                                        (<Link to={`/createFileUploadQuestion/${ques.id}`}>
+                                                            <Button className='iconBtn'><IoIosAdd size={20} /></Button>
+                                                        </Link>)
+                                                        }
                                                         <Button className='iconBtn' onClick={(e) => {deleteQuestionnaire(ques.id)}}><IoMdTrash /></Button>
+                                                        
                                                     </td>
                                                 </tr>
-                                            ))
-                                        ) : <div>No questionnaire reports</div>
+                                            )})
+                                        ) : <div>No questionnaire records</div>
                                     }
                                 </tbody>
                             </Table>

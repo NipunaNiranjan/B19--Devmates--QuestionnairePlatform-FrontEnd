@@ -79,7 +79,7 @@ export default function CreateQuestionPage() {
                                 <Form.Label column md={4}>Descriptive Name</Form.Label>
                                 <Form.Control 
                                     type="text" 
-                                    placeholder=""
+                                    placeholder="Enter a descriptive name"
                                     value={name}
                                     onChange={(e) => {
                                     setName(e.target.value);
@@ -95,21 +95,22 @@ export default function CreateQuestionPage() {
                                 <Form.Label column md={4}>Question Content</Form.Label>
                                 <Form.Control 
                                 style={{height: "100px"}} 
-                                placeholder="" 
+                                placeholder="Enter the question" 
                                 type="textarea"
                                 value={question}
                                 onChange={(e) => {
                                     setQuestion(e.target.value);
                                     setErrors({...errors, question: ''});
                                     }}
-                                {...errors.question && <p style={{color: 'rgb(208,0,0)'}}>{errors.question}</p>}
-                                />
+                                    />
+                                {errors.question && <p style={{color: 'rgb(208,0,0)'}}>{errors.question}</p>}
+                                
                             </Form.Group>
                         {/* </Form> */}
                         </Form>
                         <div className='btn-con d-flex justify-content-between'>
                             <Button variant="primary" style={{minWidth: "100px"}} onClick={finishSAQ}>Finish and Submit</Button>
-                            <Button variant="primary" style={{minWidth: "100px"}} onClick={createSAQuestion}>Next Question</Button>
+                            <Button variant="primary" style={{minWidth: "100px"}} onClick={createSAQuestion}>Add Question</Button>
                         </div>
                     </div>
                 </Container>

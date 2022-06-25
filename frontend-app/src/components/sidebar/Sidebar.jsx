@@ -18,7 +18,7 @@ function Sidebar() {
             className="text-decoration-none"
             style={{ color: "inherit" }}
           >
-            Sidebar
+            Create Questionnaire
           </a>
         </CDBSidebarHeader>
 
@@ -35,11 +35,31 @@ function Sidebar() {
             </CDBSidebarMenuItem>
             <CDBSidebarMenuItem>
               <a
-                href="/createShortAnswer"
+                href="/createFileQuestionnairePage"
                 className="text-decoration-none"
                 style={{ color: "inherit" }}
               >
                 File Upload Questionnaire
+              </a>
+            </CDBSidebarMenuItem>
+
+            <CDBSidebarMenuItem>
+              <a
+                //href="/createShortAnswer"
+                className="text-decoration-none"
+                style={{ color: "inherit" }}
+              >
+                MCQ Questionnaire
+              </a>
+            </CDBSidebarMenuItem>
+
+            <CDBSidebarMenuItem>
+              <a
+                //href="/createShortAnswer"
+                className="text-decoration-none"
+                style={{ color: "inherit" }}
+              >
+                Code Challenge
               </a>
             </CDBSidebarMenuItem>
           </CDBSidebarMenu>

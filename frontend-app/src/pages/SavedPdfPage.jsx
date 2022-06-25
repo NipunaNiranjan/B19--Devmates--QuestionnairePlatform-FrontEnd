@@ -1,10 +1,39 @@
-import React from 'react';
+import React, { useEffect,useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { Button, Col, Container, Row, Table } from 'react-bootstrap';
 import Navbar from '../components/navbar/NavbarComponent';
 import Sidebar from '../components/sidebar/Sidebar';
 import { IoMdTrash } from "react-icons/io";
+import api from '../axiosContact';
 
-export default function SavedShortAnswerPage () {
+export default function SavedPdfPage () {
+
+    const {id} = useParams();
+
+    const [files, setFiles] = useState([]);
+
+    useEffect(() => {
+        getFiles();
+    }, [])  
+
+    const getFiles = async () => {
+        const res = await api.get(`/files/${id}`);
+        if(res.data) {
+            console.log(res.data);
+            setFiles(res.data);
+        } else {
+            console.log(res);
+        }
+    }
+
+    const deleteFile = async (fqId) => {
+        const res = await api.delete(`/files/${fqId}`);
+        if(res.data) {
+            getFiles();
+        } else {
+            console.log(res);
+        }
+    }
     return (
         <>
             <Navbar />
@@ -16,13 +45,27 @@ export default function SavedShortAnswerPage () {
                             <Table borderless hover>
                                 <thead>
                                     <tr>
-                                        <th>Descriptive Name</th>
-                                        <th>File</th>
+                                        {/* <th>Descriptive Name</th> */}
+                                        <th>Uploaded File Name</th>
                                         <th>Options</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
+                                {
+                                        files.length > 0 ? (
+                                            files.map((file) => (
+                                                <tr key={file.fqid}>
+                                                    <td>{file.fileName}</td>
+                                                    <td className='tblOption'>
+                                                        <Button className='iconBtn' onClick={(e) => {deleteFile(file.fqid)}}><IoMdTrash /></Button></td>
+                                                </tr>
+                                            ))
+                                        ) : <div>No Uploaded files</div>
+                                    }
+
+
+
+                                    {/* <tr>
                                         <td>Chache</td>
                                         <td className='pdfTblData'>cache.pdf</td>
                                         <td className='tblOption'><Button className='iconBtn'><IoMdTrash /></Button></td>
@@ -36,7 +79,7 @@ export default function SavedShortAnswerPage () {
                                         <td>Age</td>
                                         <td className='pdfTblData'>age.pdf</td>
                                         <td className='tblOption'><Button className='iconBtn'><IoMdTrash /></Button></td>
-                                    </tr>
+                                    </tr> */}
                                 </tbody>
                             </Table>
                         </Col>

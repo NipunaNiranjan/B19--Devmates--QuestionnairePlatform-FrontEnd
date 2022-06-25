@@ -6,7 +6,7 @@ import NavbarComponent from "../components/navbar/NavbarComponent";
 import Sidebar from '../components/sidebar/Sidebar'
 import api from '../axiosContact'
 
-function CreateSAQPage() {
+function CreateFileQuestionnairePage() {
 
     const navigate = useNavigate();
 
@@ -49,11 +49,11 @@ function CreateSAQPage() {
                 name: name,
                 description: description,
                 duration: duration,
-                type: 'shortQ'
+                type: 'fileQ'
             }).then((result) => {
                 if (result.data) {
                     const id = result.data.id;
-                    navigate(`/createQuestionPage/${id}`)
+                    navigate(`/createFileUploadQuestion/${id}`)
                 } else {
                    console.log(result); 
                 }
@@ -71,7 +71,7 @@ function CreateSAQPage() {
     <div style={{ display: "flex", height: "100vh", overflow: "scroll initial" }}>
         <Sidebar/>
         <div className='main-con'>
-            <div className="bg-txt-con" style={{width: "100%"}}>Create Short Answer Questionnaries </div>
+            <div className="bg-txt-con" style={{width: "100%"}}>Create File Upload Questionnaries </div>
             <Container  style={{width: "100%", padding: 0}}>
                 <Row className='pt-3'>
                     <Col>
@@ -144,4 +144,4 @@ function CreateSAQPage() {
   )
 }
 
-export default CreateSAQPage
+export default CreateFileQuestionnairePage
