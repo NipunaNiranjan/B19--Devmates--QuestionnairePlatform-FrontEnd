@@ -12,8 +12,8 @@ function TeacherClasses() {
     refreshClasses();
   }, []);
 
-  function refreshClasses() {
-    const ProjectAPI = axios
+  async function refreshClasses() {
+    const ProjectAPI = await axios
       .get("api/v1/class")
       .then((res) => {
         setClasses(res.data.body);

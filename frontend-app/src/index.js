@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 import axios from "axios";
+import { BrowserRouter } from "react-router-dom";
 
 axios.defaults.baseURL = "http://localhost:8080/";
 axios.defaults.headers.common["Authorization"] =
@@ -10,7 +11,9 @@ axios.defaults.headers.common["Authorization"] =
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById("root")
 );
