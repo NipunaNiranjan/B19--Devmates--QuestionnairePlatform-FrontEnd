@@ -6,6 +6,7 @@ import { useLocation, useParams } from "react-router-dom";
 function StudentTable(props) {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [studentClasses, setStudentClasses] = useState([]);
 
   let params = useParams();
 
@@ -27,6 +28,13 @@ function StudentTable(props) {
     const classId = params.classId;
     console.log(sid);
 
+    console.log(isAlreadyAdded(sid, classId));
+
+    if (isAlreadyAdded(sid, classId)) {
+      alert("student is already added to this class");
+      return;
+    }
+
     axios
       .put(`api/v1/class/add?studentId=${sid}&classId=${classId}`)
       .then((res) => {
@@ -35,6 +43,27 @@ function StudentTable(props) {
       })
       .catch((err) => console.log(err));
   };
+
+  const isEqualMaxStudents = () => {};
+
+  function isAlreadyAdded(sid, sclassId) {
+    let val = false;
+    let result1 = axios
+      .get(`api/v1/class/student/${sid}`)
+      .then((res) => {
+        setStudentClasses(res.data.body);
+        // console.log(res.data.body);
+      })
+      .catch((err) => console.log(err));
+
+    studentClasses.map((item) => {
+      if (item.classId == sclassId) {
+        val = true;
+      }
+    });
+
+    return val;
+  }
 
   return (
     <>
