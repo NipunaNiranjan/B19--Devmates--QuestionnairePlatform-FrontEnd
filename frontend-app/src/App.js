@@ -42,7 +42,6 @@ function App() {
         element={<StudentDashboardMain />}
       />
       <Route
-        exact
         path="/dashboard/teacher/addStudentClass/:classId/:className"
         element={<AddStudents />}
       />

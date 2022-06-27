@@ -3,9 +3,10 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import { useLocation, useParams } from "react-router-dom";
 
-function StudentTable() {
+function StudentTable(props) {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [studentClasses, setStudentClasses] = useState([]);
 
   let params = useParams();
 
@@ -27,17 +28,53 @@ function StudentTable() {
     const classId = params.classId;
     console.log(sid);
 
+    // console.log(isAlreadyAdded(sid, classId));
+
+    // if (isAlreadyAdded(sid, classId)) {
+    //   alert("student is already added to this class");
+    //   return;
+    // }
+
     axios
       .put(`api/v1/class/add?studentId=${sid}&classId=${classId}`)
       .then((res) => {
         console.log(res.data);
         alert(res.data.message);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        alert("Student is already added to this class");
+      });
   };
+
+  const isEqualMaxStudents = () => {};
+
+  function isAlreadyAdded(sid, sclassId) {
+    let val = false;
+    let result1 = getStudentClasses(sid);
+
+    studentClasses.map((item) => {
+      if (item.classId == sclassId) {
+        val = true;
+      }
+    });
+
+    return val;
+  }
+
+  async function getStudentClasses(sid) {
+    return await axios
+      .get(`api/v1/class/student/${sid}`)
+      .then((res) => {
+        setStudentClasses(res.data.body);
+        // console.log(res.data.body);
+      })
+      .catch((err) => console.log(err));
+  }
 
   return (
     <>
+      {/* {console.log(props.maxStudents)} */}
       <Container fluid style={{ marginTop: "80px" }}>
         <Row className="justify-content-md-center">
           <Col xs lg="10">

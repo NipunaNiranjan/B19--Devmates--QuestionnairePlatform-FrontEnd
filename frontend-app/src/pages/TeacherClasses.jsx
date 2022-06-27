@@ -75,6 +75,7 @@ function TeacherClasses() {
                           "/" +
                           item.className
                         }
+                        state={{ maxStudents: item.noOfStudents }}
                       >
                         Click to add students
                       </Link>{" "}
