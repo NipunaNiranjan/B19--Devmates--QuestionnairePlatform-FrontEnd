@@ -28,12 +28,12 @@ function StudentTable(props) {
     const classId = params.classId;
     console.log(sid);
 
-    console.log(isAlreadyAdded(sid, classId));
+    // console.log(isAlreadyAdded(sid, classId));
 
-    if (isAlreadyAdded(sid, classId)) {
-      alert("student is already added to this class");
-      return;
-    }
+    // if (isAlreadyAdded(sid, classId)) {
+    //   alert("student is already added to this class");
+    //   return;
+    // }
 
     axios
       .put(`api/v1/class/add?studentId=${sid}&classId=${classId}`)
@@ -41,20 +41,17 @@ function StudentTable(props) {
         console.log(res.data);
         alert(res.data.message);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        alert("Student is already added to this class");
+      });
   };
 
   const isEqualMaxStudents = () => {};
 
   function isAlreadyAdded(sid, sclassId) {
     let val = false;
-    let result1 = axios
-      .get(`api/v1/class/student/${sid}`)
-      .then((res) => {
-        setStudentClasses(res.data.body);
-        // console.log(res.data.body);
-      })
-      .catch((err) => console.log(err));
+    let result1 = getStudentClasses(sid);
 
     studentClasses.map((item) => {
       if (item.classId == sclassId) {
@@ -63,6 +60,16 @@ function StudentTable(props) {
     });
 
     return val;
+  }
+
+  async function getStudentClasses(sid) {
+    return await axios
+      .get(`api/v1/class/student/${sid}`)
+      .then((res) => {
+        setStudentClasses(res.data.body);
+        // console.log(res.data.body);
+      })
+      .catch((err) => console.log(err));
   }
 
   return (
