@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Col, Container, Row, Table } from "react-bootstrap";
 import { useLocation, useParams } from "react-router-dom";
 
-function StudentTable() {
+function StudentTable(props) {
   const [users, setUsers] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -38,6 +38,7 @@ function StudentTable() {
 
   return (
     <>
+      {/* {console.log(props.maxStudents)} */}
       <Container fluid style={{ marginTop: "80px" }}>
         <Row className="justify-content-md-center">
           <Col xs lg="10">
