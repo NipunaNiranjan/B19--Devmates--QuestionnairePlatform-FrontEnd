@@ -10,6 +10,7 @@ import AddStudents from "./pages/AddStudents";
 import Login from "./components/forms/Login";
 import { HomePage } from "./pages/Home/HomePage";
 import Class from "./pages/Class";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   return (
@@ -50,6 +51,9 @@ function App() {
         path="/dashboard/class/:classId/:className"
         element={<Class />}
       />
+
+      {/* user profile */}
+      <Route exact path="/userProfile" element={<UserProfile />} />
     </Routes>
   );
 }
