@@ -22,9 +22,9 @@ function TeacherClasses() {
       .catch((err) => console.log(err));
   }
 
-  const handleAddStudentClick = () => {
-    navigate("/dashboard/teacher/addStudentClass");
-  };
+  // const handleAddStudentClick = () => {
+  //   navigate("/dashboard/teacher/addStudentClass");
+  // };
 
   return (
     <>

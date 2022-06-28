@@ -12,7 +12,7 @@ function UserProfile() {
       >
         <Sidebar />
         <div className="m-lg-5 container-fluid">
-          <h1>Create a class</h1>
+          <h1>My Profile</h1>
           <EditUserProfile />
 
           <hr />
