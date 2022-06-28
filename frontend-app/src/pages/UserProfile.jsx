@@ -1,5 +1,7 @@
 import React from "react";
 import EditUserProfile from "../components/forms/EditUserProfile";
+import NavbarComponent from "../components/navbar/NavbarComponent";
+import Sidebar from "../components/sidebar/Sidebar";
 
 function UserProfile() {
   return (
