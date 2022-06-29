@@ -47,7 +47,10 @@ function EditUserProfile() {
       .then((res) => {
         console.log(res);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        alert(err.response.data.message);
+      });
   };
 
   return (
