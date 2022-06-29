@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function EditUserProfile() {
   const [username, setusername] = useState("");
@@ -14,6 +15,8 @@ function EditUserProfile() {
   const [errorPhone, setErrorPhoneNo] = useState("");
   const [errorPassword, setErrorPassword] = useState("");
   const [confirmPass, setConfirmPass] = useState("");
+
+  const navigate = useNavigate();
 
   //const [users, setUsers] = useState([]);
 
@@ -58,6 +61,9 @@ function EditUserProfile() {
       })
       .then((res) => {
         console.log(res);
+        alert("Succesfull, please log again to confirm changes");
+        localStorage.clear();
+        navigate("/login");
       })
       .catch((err) => {
         console.log(err);
