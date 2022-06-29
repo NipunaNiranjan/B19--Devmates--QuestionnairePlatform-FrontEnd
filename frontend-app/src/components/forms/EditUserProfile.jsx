@@ -34,7 +34,21 @@ function EditUserProfile() {
   //       .catch((err) => console.log(err));
   //   }
 
-  const handleSubmit = () => {};
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .put("api/v1/users/editProfile", {
+        id: localStorage.getItem("userID"),
+        username: username,
+        password: password,
+        email: email,
+        phone: phoneNo,
+      })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
 
   return (
     <>
