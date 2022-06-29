@@ -35,6 +35,10 @@ function NavbarComponent() {
     }
   };
 
+  const handleNavigationAccount = () => {
+    navigate("/userProfile");
+  };
+
   return (
     <Navbar
       bg="myNavbarColor"
@@ -53,7 +57,9 @@ function NavbarComponent() {
             <NavDropdown.Item onClick={() => handleNavigationHome()}>
               Dashboard
             </NavDropdown.Item>
-            <NavDropdown.Item>Account</NavDropdown.Item>
+            <NavDropdown.Item onClick={() => handleNavigationAccount()}>
+              Account
+            </NavDropdown.Item>
             <NavDropdown.Item>Grades</NavDropdown.Item>
             <hr />
             <NavDropdown.Item onClick={() => handleLogout()}>
